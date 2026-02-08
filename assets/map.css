@@ -1,0 +1,45 @@
+/* Blue Waves Cafe - Map Section Styles */
+
+.map-container {
+    margin: 3rem 0;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(180deg, var(--foam-white) 0%, #ffffff 100%);
+    border-radius: 15px;
+}
+
+.map-container h3 {
+    color: var(--ocean-deep);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.map-container h3::after {
+    content: '🌊';
+    position: absolute;
+    right: 530px;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.map-container iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 105, 148, 0.2);
+    border: 3px solid var(--sky-blue);
+}
+
+@media (max-width: 768px) {
+    .map-container iframe {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container iframe {
+        height: 300px;
+    }
+}

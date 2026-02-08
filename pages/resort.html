@@ -1,0 +1,1664 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluewaves Resort - Culinary Menu</title>
+    <link rel="icon" href="../images/bluewaves.jpg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --ocean-deep: #0a1628;
+        --ocean-dark: #0f2847;
+        --ocean: #1a4971;
+        --azure: #3d8bc2;
+        --foam: #a8dff0;
+        --sand: #f4ede3;
+        --gold: #c9a961;
+        --gold-light: #ddc489;
+        --gold-dark: #a68b4f;
+        --text: #1a1a1a;
+        --text-sec: #4a5568;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: var(--sand);
+        color: var(--text);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 28px 64px;
+        background: rgba(10, 22, 40, 0.75);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+        transition: all 0.4s;
+      }
+      header.scrolled {
+        padding: 16px 64px;
+        background: rgba(10, 22, 40, 0.92);
+      }
+      .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo-main {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .logo-sub {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        font-weight: 400;
+        margin-left: 16px;
+      }
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          165deg,
+          var(--ocean-deep) 0%,
+          var(--ocean-dark) 25%,
+          var(--ocean) 55%,
+          var(--azure) 100%
+        );
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle 320px at 15% 70%,
+            rgba(201, 169, 97, 0.08) 0%,
+            transparent 65%
+          ),
+          radial-gradient(
+            circle 240px at 80% 30%,
+            rgba(110, 181, 219, 0.06) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        max-width: 900px;
+        padding: 0 32px;
+        animation: fadeUp 1.2s ease;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 10px 28px;
+        margin-bottom: 32px;
+        background: rgba(201, 169, 97, 0.08);
+        border: 1px solid rgba(201, 169, 97, 0.25);
+        border-radius: 50px;
+        color: var(--gold-light);
+        font-size: 0.75rem;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+      }
+      .hero-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3.5rem, 9vw, 6.5rem);
+        font-weight: 400;
+        color: #fff;
+        line-height: 1.1;
+        letter-spacing: 2px;
+        margin-bottom: 24px;
+      }
+      .hero-subtitle {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 300;
+        font-style: italic;
+        color: var(--gold);
+        letter-spacing: 4px;
+        margin-bottom: 32px;
+      }
+      .hero-desc {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 300;
+        max-width: 650px;
+        margin: 0 auto;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .about {
+        padding: 140px 64px;
+        background: var(--sand);
+        text-align: center;
+      }
+      .about h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 5vw, 3.8rem);
+        color: var(--text);
+        margin-bottom: 40px;
+      }
+      .about p {
+        color: var(--text-sec);
+        margin-bottom: 24px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .features {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 56px;
+      }
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        background: #fff;
+        border: 1px solid rgba(201, 169, 97, 0.15);
+        border-radius: 50px;
+      }
+      .menu {
+        padding: 140px 64px;
+        background: linear-gradient(180deg, #f8fbfd 0%, #e8f0f5 100%);
+      }
+      .menu-header {
+        text-align: center;
+        margin-bottom: 70px;
+      }
+      .menu-header h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 5vw, 3.8rem);
+        color: var(--text);
+      }
+      .cat-nav {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 80px;
+      }
+      .cat-btn {
+        padding: 14px 32px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(26, 73, 113, 0.12);
+        border-radius: 50px;
+        color: var(--text-sec);
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.35s;
+      }
+      .cat-btn:hover {
+        border-color: rgba(201, 169, 97, 0.3);
+        transform: translateY(-2px);
+      }
+      .cat-btn.active {
+        background: linear-gradient(135deg, var(--ocean), var(--ocean-dark));
+        color: var(--gold-light);
+        border-color: transparent;
+      }
+      .menu-content {
+        display: none;
+        animation: fade 0.5s ease;
+      }
+      .menu-content.active {
+        display: block;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .cat-header {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        color: var(--ocean);
+        margin-bottom: 36px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid rgba(201, 169, 97, 0.2);
+      }
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 28px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(26, 73, 113, 0.06);
+        transition: all 0.4s;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      }
+      .card-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #d6e3ed, #c2d9e8);
+      }
+      .card-body {
+        padding: 28px;
+      }
+      .card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .card-desc {
+        font-size: 0.88rem;
+        color: var(--text-sec);
+        margin-bottom: 20px;
+      }
+      .card-price {
+        font-weight: 600;
+        color: var(--gold-dark);
+        padding-top: 16px;
+        border-top: 1px solid rgba(26, 73, 113, 0.08);
+      }
+
+      /* Boodle Fight Specific Styles */
+      .boodle-submenu {
+        display: none;
+        margin-top: 40px;
+        animation: fade 0.5s ease;
+      }
+      .boodle-submenu.active {
+        display: block;
+      }
+      .boodle-nav {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+      .boodle-btn {
+        padding: 12px 28px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(201, 169, 97, 0.2);
+        border-radius: 50px;
+        color: var(--text-sec);
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.35s;
+      }
+      .boodle-btn:hover {
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(201, 169, 97, 0.4);
+        transform: translateY(-2px);
+      }
+      .boodle-btn.active {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+      }
+      .boodle-section {
+        display: none;
+      }
+      .boodle-section.active {
+        display: block;
+        animation: fade 0.5s ease;
+      }
+      .boodle-info {
+        background: rgba(255, 255, 255, 0.6);
+        border-left: 4px solid var(--gold);
+        padding: 24px;
+        border-radius: 12px;
+        margin-bottom: 32px;
+      }
+      .boodle-info h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        color: var(--ocean);
+        margin-bottom: 12px;
+      }
+      .boodle-info p {
+        color: var(--text-sec);
+        font-size: 0.95rem;
+      }
+      .ingredients-list {
+        background: #fff;
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      .ingredients-list h5 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        color: var(--ocean);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid rgba(201, 169, 97, 0.2);
+      }
+      .ingredient-category {
+        margin-bottom: 24px;
+      }
+      .ingredient-category h6 {
+        font-weight: 600;
+        color: var(--gold-dark);
+        margin-bottom: 12px;
+        font-size: 1rem;
+      }
+      .ingredient-category ul {
+        list-style: none;
+        padding: 0;
+      }
+      .ingredient-category li {
+        padding: 8px 0;
+        padding-left: 24px;
+        position: relative;
+        color: var(--text-sec);
+        font-size: 0.9rem;
+      }
+      .ingredient-category li:before {
+        content: "•";
+        position: absolute;
+        left: 8px;
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      .back-to-main-section {
+        padding: 25px 64px;
+        background: var(--sand);
+        text-align: center;
+      }
+      .back-to-main {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #5b8db8;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .back-to-main:hover {
+        color: var(--ocean);
+        gap: 14px;
+      }
+      .back-to-main::before {
+        content: "←";
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+      }
+      .back-to-main:hover::before {
+        transform: translateX(-3px);
+      }
+
+      footer {
+        background: var(--ocean-deep);
+        padding: 56px 64px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        border-top: 1px solid rgba(201, 169, 97, 0.1);
+      }
+      .back-top {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        width: 56px;
+        height: 56px;
+        background: var(--ocean-deep);
+        border: 1px solid rgba(201, 169, 97, 0.3);
+        border-radius: 50%;
+        color: var(--gold-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.4s;
+        text-decoration: none;
+        z-index: 999;
+      }
+      .back-top.visible {
+        opacity: 1;
+      }
+      @media (max-width: 768px) {
+        header,
+        header.scrolled {
+          padding: 20px 32px;
+        }
+        .about,
+        .menu {
+          padding: 100px 32px;
+        }
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-content">
+        <div>
+          <span class="logo-main">BLUEWAVES</span
+          ><span class="logo-sub">RESORT</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">✦ CULINARY EXCELLENCE ✦</div>
+        <h1 class="hero-title">Bluewaves Foods</h1>
+        <div class="hero-subtitle">Dining Experience</div>
+        <p class="hero-desc">
+          Indulge in an extraordinary culinary journey where every dish tells a
+          story of local flavors and international cuisine
+        </p>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>The Resort Experience</h2>
+      <p>
+        Nestled in a breathtaking coastal setting, Bluewaves Resort offers more
+        than just a meal—we offer an experience. Our culinary team brings
+        together the finest locally-sourced ingredients with international
+        techniques.
+      </p>
+      <div class="features">
+        <div class="feature"><span>🌅</span> All Day Dining</div>
+        <div class="feature"><span>🌿</span> Farm-to-Table</div>
+        <div class="feature"><span>👨‍🍳</span> Expert Chefs</div>
+        <div class="feature"><span>🌊</span> Ocean Views</div>
+      </div>
+    </section>
+
+    <section class="menu">
+      <div class="menu-header"><h2>Our Menu</h2></div>
+      <div class="cat-nav">
+        <button class="cat-btn active" onclick="sw('chicken')">
+          Chicken Rice
+        </button>
+        <button class="cat-btn" onclick="sw('wings')">Wings</button>
+        <button class="cat-btn" onclick="sw('pork')">Pork</button>
+        <button class="cat-btn" onclick="sw('beef')">Beef</button>
+        <button class="cat-btn" onclick="sw('steak')">Steak</button>
+        <button class="cat-btn" onclick="sw('veggies')">Vegetables</button>
+        <button class="cat-btn" onclick="sw('fish')">Fish</button>
+        <button class="cat-btn" onclick="sw('seafood')">Seafood</button>
+        <button class="cat-btn" onclick="sw('noodles')">Noodles</button>
+        <button class="cat-btn" onclick="sw('soup')">Soup</button>
+        <button class="cat-btn" onclick="sw('dessert')">Dessert</button>
+        <button class="cat-btn" onclick="sw('inhaw')">Inhaw</button>
+        <button class="cat-btn" onclick="sw('boodle')">Boodle Fight</button>
+      </div>
+
+      <div id="chicken" class="menu-content active">
+        <h3 class="cat-header">CHICKEN RICE MEAL</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Breaded Chicken</h4>
+              <p class="card-desc">Crispy breaded chicken breast</p>
+              <div class="card-price">₱129 - Solo | ₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Adobo</h4>
+              <p class="card-desc">Classic Filipino adobo</p>
+              <div class="card-price">₱129 - Solo | ₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Inasal</h4>
+              <p class="card-desc">Grilled chicken marinated in lemongrass</p>
+              <div class="card-price">₱159 - Solo | ₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Sisig</h4>
+              <p class="card-desc">Sizzling chopped chicken with peppers</p>
+              <div class="card-price">₱159 - Solo | ₱189- Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Roasted Chicken</h4>
+              <p class="card-desc">Herb-roasted chicken with vegetables</p>
+              <div class="card-price">₱189 - Solo | ₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Salpicao</h4>
+              <p class="card-desc">Herb-roasted chicken with scallops</p>
+              <div class="card-price">₱159 - Solo | ₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Ala King</h4>
+              <p class="card-desc">Creamy chicken with bell peppers</p>
+              <div class="card-price">₱129 - Solo</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Broccoli</h4>
+              <p class="card-desc">Stir-fried chicken with broccoli</p>
+              <div class="card-price">₱159 - Solo | ₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Caldaretang Itik</h4>
+              <p class="card-desc">Filipino chicken stew</p>
+              <div class="card-price">₱359 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Spicy Basil Chicken</h4>
+              <p class="card-desc">Thai-inspired spicy basil chicken</p>
+              <div class="card-price">₱229 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Karage</h4>
+              <p class="card-desc">Japanese-style fried chicken</p>
+              <div class="card-price">₱139 - Solo | ₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Teriyaki</h4>
+              <p class="card-desc">Grilled chicken with teriyaki glaze</p>
+              <div class="card-price">₱139 - Solo | ₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Biryani</h4>
+              <p class="card-desc">Aromatic spiced rice with chicken</p>
+              <div class="card-price">₱239</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pork" class="menu-content">
+        <h3 class="cat-header">PORK</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Crispy Kare-Kare</h4>
+              <p class="card-desc">Crispy pork in peanut sauce</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/sinigangblu.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Bluewaves Signature Sinigang</h4>
+              <p class="card-desc">House specialty pork dish</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pork Sisig</h4>
+              <p class="card-desc">Sizzling chopped pork</p>
+              <div class="card-price">₱209 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/pata.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Crispy Pata</h4>
+              <p class="card-desc">Deep fried pork leg</p>
+              <div class="card-price">₱700 - ₱800 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pork Teriyaki</h4>
+              <p class="card-desc">Grilled pork with teriyaki sauce</p>
+              <div class="card-price">₱209 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/baby.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Baby Back Ribs</h4>
+              <p class="card-desc">Tender BBQ ribs</p>
+              <div class="card-price">₱299 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Lechong Kawali</h4>
+              <p class="card-desc">Crispy pork belly</p>
+              <div class="card-price">₱229 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/pshang.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Pork Shanghai</h4>
+              <p class="card-desc">Grilled pork strips</p>
+              <div class="card-price">₱149 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pork Steak</h4>
+              <p class="card-desc">Marinated pork with onions</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/porkbagoon.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Pork Binagoongan</h4>
+              <p class="card-desc">Pork in shrimp paste</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Bicol Express</h4>
+              <p class="card-desc">Spicy pork stew with vegetables</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pork Kare-Kare</h4>
+              <p class="card-desc">
+                Rich and flavorful pork stew with vegetables
+              </p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="beef" class="menu-content">
+        <h3 class="cat-header">BEEF</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img src="../images/amp.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Ampalaya Con Karne</h4>
+              <p class="card-desc">Traditional beef stew</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Beef Caldareta</h4>
+              <p class="card-desc">Rich beef stew in tomato sauce</p>
+              <div class="card-price">₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Beef Salpicao</h4>
+              <p class="card-desc">Hearty beef soup</p>
+              <div class="card-price">₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Bulalo</h4>
+              <p class="card-desc">Beef and organ soup</p>
+              <div class="card-price">₱349 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Salisbury Steak</h4>
+              <p class="card-desc">Beef patty with mushroom gravy</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/beef-teriyaki.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Beef Teriyaki</h4>
+              <p class="card-desc">Grilled beef with teriyaki</p>
+              <div class="card-price">₱229 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="steak" class="menu-content">
+        <h3 class="cat-header">STEAK</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Porterhouse Steak</h4>
+              <p class="card-desc">Premium cut steak</p>
+              <div class="card-price"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/tender.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Sirloin</h4>
+              <p class="card-desc">Tender sirloin steak</p>
+              <div class="card-price"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• T-bone Steak</h4>
+              <p class="card-desc">Classic T-bone cut</p>
+              <div class="card-price"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="../images/tender.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Tenderloin</h4>
+              <p class="card-desc">Grilled tenderloin</p>
+              <div class="card-price"></div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Salisbury Steak</h4>
+              <p class="card-desc">Beef patty with mushroom gravy</p>
+              <div class="card-price"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="wings" class="menu-content">
+        <h3 class="cat-header">WINGS</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Garlic Parmesan</h4>
+              <p class="card-desc">Garlic and parmesan seasoning</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Buffalo</h4>
+              <p class="card-desc">Spicy buffalo sauce</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Garlic Butter</h4>
+              <p class="card-desc">Butter with garlic seasoning</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Salted Egg</h4>
+              <p class="card-desc">Salted egg with special sauce</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Honey Butter</h4>
+              <p class="card-desc">Honey and butter blend</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Barbeque</h4>
+              <p class="card-desc">Barbeque sauce with crispy skin</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Teriyaki</h4>
+              <p class="card-desc">Teriyaki sauce with crispy skin</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Spicy Garlic</h4>
+              <p class="card-desc">Spicy garlic sauce with crispy skin</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Orange Chicken</h4>
+              <p class="card-desc">Orange chicken with special sauce</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">Sweet Chili</h4>
+              <p class="card-desc">Sweet chili sauce with crispy skin</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="fish" class="menu-content">
+        <h3 class="cat-header">FISH</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Fish Fillet</h4>
+              <p class="card-desc">Crispy fish fillet</p>
+              <div class="card-price">₱199 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Sweet & Sour Pompano</h4>
+              <p class="card-desc">Fried pompano in sweet and sour</p>
+              <div class="card-price">₱289 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/salmon.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Sinigang na salmon head</h4>
+              <p class="card-desc">Salmon head in sour broth</p>
+              <div class="card-price">₱229 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/panga.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Grilled Tuna Panga</h4>
+              <p class="card-desc">Premium grilled tuna panga</p>
+              <div class="card-price">₱289 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Grilled Tuna Belly</h4>
+              <p class="card-desc">Premium grilled tuna belly</p>
+              <div class="card-price">₱269 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/kinilaw.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Tuna Kinilaw</h4>
+              <p class="card-desc">Fresh raw tuna in vinegar</p>
+              <div class="card-price">₱259 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Sinigung sa Miso (Salmon Head)</h4>
+              <p class="card-desc">Salmon in miso broth</p>
+              <div class="card-price">₱259 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="seafood" class="menu-content">
+        <h3 class="cat-header">SEAFOODS</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Sinigang na Hipon</h4>
+              <p class="card-desc">Shrimp in sour broth</p>
+              <div class="card-price">₱289 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Gising-Gising</h4>
+              <p class="card-desc">Spicy shrimp in coconut</p>
+              <div class="card-price">₱229 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/hipon.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Buttered Shrimp</h4>
+              <p class="card-desc">Shrimp in rich butter</p>
+              <div class="card-price">₱279 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/talga.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Grilled Talaba</h4>
+              <p class="card-desc">Grilled talaba with spices</p>
+              <div class="card-price">₱199 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Tempura</h4>
+              <p class="card-desc">Japanese battered seafood</p>
+              <div class="card-price">₱269 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="veggies" class="menu-content">
+        <h3 class="cat-header">VEGETABLES</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Laing sa Buko</h4>
+              <p class="card-desc">Vegetable dish with coconut</p>
+              <div class="card-price">₱229 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chopsuey</h4>
+              <p class="card-desc">Mixed vegetables in soy sauce</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pinakbet</h4>
+              <p class="card-desc">Mixed vegetables with meat and coconut</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Stir Fried Kangkong</h4>
+              <p class="card-desc">Stir-fried kangkong with garlic</p>
+              <div class="card-price">₱159 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Bokchoy Garlic Sauce</h4>
+              <p class="card-desc">Bokchoy with garlic sauce</p>
+              <div class="card-price">₱179 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Stir Fried Brocolli</h4>
+              <p class="card-desc">Stir-fried broccoli with garlic</p>
+              <div class="card-price">₱179 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="noodles" class="menu-content">
+        <h3 class="cat-header">NOODLES</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pansit Guisado</h4>
+              <p class="card-desc">Stir-fried noodles</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pansit Canton</h4>
+              <p class="card-desc">Filipino wheat noodles</p>
+              <div class="card-price">₱199 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Mix Canton Bihon</h4>
+              <p class="card-desc">Mixed noodles</p>
+              <div class="card-price">₱199 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Chicken Wanton</h4>
+              <p class="card-desc">Chicken wanton with noodles</p>
+              <div class="card-price">₱169 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Beef Wanton</h4>
+              <p class="card-desc">Beef wanton with noodles</p>
+              <div class="card-price">₱179 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="soup" class="menu-content">
+        <h3 class="cat-header">SOUP</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Bluewaves VIP Soup</h4>
+              <p class="card-desc">Signature soup</p>
+              <div class="card-price">₱249 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Bollabaise</h4>
+              <p class="card-desc">Rich hearty soup</p>
+              <div class="card-price">₱239 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Pumpkin</h4>
+              <p class="card-desc">Creamy pumpkin soup</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• French Onion</h4>
+              <p class="card-desc">Classic French onion</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Tulya Soup</h4>
+              <p class="card-desc">Fresh clam soup</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Creamy Potato Soup</h4>
+              <p class="card-desc">Smooth potato soup</p>
+              <div class="card-price">₱189 - Alacart</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="dessert" class="menu-content">
+        <h3 class="cat-header">DESSERTS</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Coffee Jelly</h4>
+              <p class="card-desc">Refreshing coffee dessert</p>
+              <div class="card-price">₱89</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Buko Pandan</h4>
+              <p class="card-desc">Coconut pandan dessert</p>
+              <div class="card-price">₱89</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Halaya</h4>
+              <p class="card-desc">Purple yam jam</p>
+              <div class="card-price">₱149</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Halo-Halo</h4>
+              <p class="card-desc">Mixed dessert</p>
+              <div class="card-price">₱109 - 149</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Buri Ice Cream</h4>
+              <p class="card-desc">Premium ice cream</p>
+              <div class="card-price">₱129</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="inhaw" class="menu-content">
+        <h3 class="cat-header">INHAW</h3>
+        <div class="menu-grid">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Porkchop</h4>
+              <p class="card-desc">Grilled pork chop</p>
+              <div class="card-price">₱249</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/tinalipa.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Tilapia</h4>
+              <p class="card-desc">Grilled tilapia</p>
+              <div class="card-price">₱209</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Grilled Lempo</h4>
+              <p class="card-desc">Grilled fish</p>
+              <div class="card-price">₱229</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/hito.jpg" class="card-img" />
+            <div class="card-body">
+              <h4 class="card-title">• Hito</h4>
+              <p class="card-desc">Grilled catfish</p>
+              <div class="card-price">₱209</div>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h4 class="card-title">• Dalag</h4>
+              <p class="card-desc">Grilled mudfish</p>
+              <div class="card-price">₱209</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOODLE FIGHT SECTION -->
+      <div id="boodle" class="menu-content">
+        <h3 class="cat-header">BOODLE FIGHT (FAMILY BUNDLE)</h3>
+        <div class="boodle-info">
+          <h4>🍽️ Good for 10-15 People</h4>
+          <p>
+            Experience the Filipino tradition of Boodle Fight - a communal feast
+            where everyone eats together! Choose your preferred package below to
+            see what's included.
+          </p>
+        </div>
+
+        <div class="boodle-nav">
+          <button class="boodle-btn active" onclick="swBoodle('meats')">
+            Meats & Fish
+          </button>
+          <button class="boodle-btn" onclick="swBoodle('veggies')">
+            Vegetables
+          </button>
+          <button class="boodle-btn" onclick="swBoodle('sides')">Sides</button>
+          <button class="boodle-btn" onclick="swBoodle('extras')">
+            Extras
+          </button>
+        </div>
+
+        <div class="boodle-submenu active">
+          <!-- MEATS/FISH SECTION -->
+          <div id="boodle-meats" class="boodle-section active">
+            <div class="ingredients-list">
+              <h5>MEATS / FISH</h5>
+              <div class="ingredient-category">
+                <h6>Grilled & Fried</h6>
+                <ul>
+                  <li>6pcs Tilapia</li>
+                  <li>3pcs Dalag</li>
+                  <li>3pcs Hito</li>
+                  <li>3pcs Porkchop</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- VEGGIES SECTION -->
+          <div id="boodle-veggies" class="boodle-section">
+            <div class="ingredients-list">
+              <h5>VEGETABLES</h5>
+              <div class="ingredient-category">
+                <h6>Fresh Vegetables</h6>
+                <ul>
+                  <li>15pcs Okra</li>
+                  <li>6pcs Talong (Eggplant)</li>
+                  <li>Talbos ng kamote (Sweet potato leaves)</li>
+                  <li>Ampalaya (Bitter gourd)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIDES SECTION -->
+          <div id="boodle-sides" class="boodle-section">
+            <div class="ingredients-list">
+              <h5>SIDES</h5>
+              <div class="ingredient-category">
+                <h6>Condiments & Accompaniments</h6>
+                <ul>
+                  <li>Red Onion</li>
+                  <li>Salted Egg</li>
+                  <li>Tomatoes</li>
+                  <li>Chili</li>
+                  <li>Calamansi</li>
+                  <li>Bagoong (Shrimp paste)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXTRAS SECTION -->
+          <div id="boodle-extras" class="boodle-section">
+            <div class="ingredients-list">
+              <h5>EXTRAS</h5>
+              <div class="ingredient-category">
+                <h6>Fresh Fruits</h6>
+                <ul>
+                  <li>Watermelon</li>
+                  <li>Banana</li>
+                </ul>
+              </div>
+              <div class="ingredient-category">
+                <h6>Sawsawan (Dipping Sauces)</h6>
+                <ul>
+                  <li>Vinegar</li>
+                  <li>Soy Sauce</li>
+                  <li>Patis (Fish sauce)</li>
+                </ul>
+              </div>
+              <div class="ingredient-category">
+                <h6>Drink (Pick 1)</h6>
+                <ul>
+                  <li>Lemonade</li>
+                  <li>Gulaman</li>
+                  <li>Cucumber</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="back-to-main-section">
+      <a href="../index.html" class="back-to-main">Back to Main Page</a>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Bluewaves Resort. All rights reserved.</p>
+    </footer>
+
+    <a href="#" class="back-top" id="btt">↑</a>
+
+    <script>
+      // Main category switcher
+      function sw(id) {
+        document
+          .querySelectorAll(".menu-content")
+          .forEach((c) => c.classList.remove("active"));
+        document
+          .querySelectorAll(".cat-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        event.target.classList.add("active");
+      }
+
+      // Boodle submenu switcher
+      function swBoodle(id) {
+        document
+          .querySelectorAll(".boodle-section")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .querySelectorAll(".boodle-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("boodle-" + id).classList.add("active");
+        event.target.classList.add("active");
+      }
+
+      // Scroll effects
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("header")
+          .classList.toggle("scrolled", window.scrollY > 50);
+        document
+          .getElementById("btt")
+          .classList.toggle("visible", window.scrollY > 450);
+      });
+
+      // Back to top
+      document.getElementById("btt").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

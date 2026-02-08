@@ -1,0 +1,197 @@
+/* Blue Waves Cafe - Footer Styles */
+
+.footer {
+    background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-blue) 100%);
+    color: var(--foam-white);
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footer-logo h2 {
+    color: var(--sky-blue);
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.footer-logo p {
+    color: var(--foam-white);
+    font-style: italic;
+}
+
+.footer-contact h3 {
+    color: var(--sky-blue);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.footer-contact p {
+    color: var(--foam-white);
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+.footer-contact a {
+    color: var(--tropical-teal);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: var(--sky-blue);
+}
+
+.opening-hours h3 {
+    color: var(--sky-blue);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.opening-hours ul {
+    list-style: none;
+}
+
+.opening-hours li {
+    color: var(--foam-white);
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+}
+
+.opening-hours span {
+    color: var(--tropical-teal);
+    font-weight: bold;
+}
+
+.footer-newsletter h3 {
+    color: var(--sky-blue);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(135, 206, 235, 0.2);
+    border-radius: 50%;
+    color: var(--sky-blue);
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--sky-blue);
+}
+
+.social-links a:hover {
+    background: var(--tropical-teal);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 206, 209, 0.4);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(135, 206, 235, 0.3);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom p {
+    color: var(--foam-white);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-legal a {
+    color: var(--foam-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: var(--tropical-teal);
+}
+
+/* Icon placeholders */
+.location-icon::before {
+    content: '📍 ';
+}
+
+.phone-icon::before {
+    content: '📞 ';
+}
+
+.email-icon::before {
+    content: '✉️ ';
+}
+
+.facebook-icon::before {
+    content: 'f';
+    font-family: 'Font Awesome 5 Brands';
+}
+
+.instagram-icon::before {
+    content: '';
+    font-family: 'Font Awesome 5 Brands';
+}
+
+.twitter-icon::before {
+    content: '';
+    font-family: 'Font Awesome 5 Brands';
+}
+
+.youtube-icon::before {
+    content: '';
+    font-family: 'Font Awesome 5 Brands';
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-info {
+        align-items: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-legal {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

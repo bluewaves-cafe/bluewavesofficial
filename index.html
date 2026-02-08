@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
+    <meta name="description" content="BlueWaves Café" />
+    <title>BlueWaves Café - Follow The Waves</title>
+    <link rel="icon" href="images/bluewaves.jpg" type="image/x-icon" />
+
+    <!-- Use the new responsive stylesheet -->
+    <link rel="stylesheet" href="assets/index.css" />
+    <link rel="stylesheet" href="assets/footer.css" />
+    <link rel="stylesheet" href="assets/map.css" />
+    <link rel="stylesheet" href="assets/video.css" />
+    <link rel="stylesheet" href="assets/logo.css" />
+    <link rel="stylesheet" href="assets/resto.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <style>
+      /* Compact Feedback Prompt Styles */
+      .feedback-prompt {
+        position: fixed;
+        right: -350px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #004080 0%, #006994 100%);
+        border-radius: 15px 0 0 15px;
+        box-shadow: -5px 0 20px rgba(0, 64, 128, 0.4);
+        padding: 20px 25px;
+        max-width: 320px;
+        z-index: 1000;
+        transition: right 0.4s ease-out;
+      }
+
+      .feedback-prompt.show {
+        right: 0;
+      }
+
+      .feedback-prompt.collapsed {
+        right: -350px;
+      }
+
+      .prompt-content {
+        color: white;
+      }
+
+      .prompt-content h4 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .prompt-content h4 i {
+        color: #ffd700;
+        font-size: 20px;
+      }
+
+      .prompt-content p {
+        margin: 0 0 15px 0;
+        font-size: 14px;
+        color: #e0f7ff;
+      }
+
+      .prompt-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .prompt-btn {
+        flex: 1;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .prompt-btn.rate {
+        background: #ffd700;
+        color: #004080;
+      }
+
+      .prompt-btn.rate:hover {
+        background: #ffc700;
+        transform: translateY(-2px);
+      }
+
+      .prompt-btn.later {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .prompt-btn.later:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Feedback Tab Button */
+      .feedback-tab {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #004080 0%, #006994 100%);
+        color: white;
+        border: none;
+        border-radius: 10px 0 0 10px;
+        padding: 15px 12px;
+        cursor: pointer;
+        z-index: 999;
+        box-shadow: -3px 0 15px rgba(0, 64, 128, 0.3);
+        transition: all 0.3s ease;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      .feedback-tab:hover {
+        padding-right: 18px;
+        box-shadow: -5px 0 20px rgba(0, 64, 128, 0.5);
+      }
+
+      .feedback-tab i {
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      .feedback-tab.hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .feedback-prompt {
+          right: -100%;
+          max-width: 280px;
+          padding: 15px 20px;
+          border-radius: 10px 0 0 10px;
+        }
+
+        .feedback-prompt.collapsed {
+          right: -100%;
+        }
+
+        .prompt-content h4 {
+          font-size: 16px;
+        }
+
+        .prompt-content p {
+          font-size: 13px;
+        }
+
+        .prompt-btn {
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .feedback-tab {
+          padding: 12px 10px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <img
+            src="images/bluewaves.jpg"
+            alt="Blue Waves Logo"
+            width="100"
+            height="90"
+          />
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#contact">Reservations</a></li>
+        </ul>
+        <div class="hamburger" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      // Blue Waves Cafe - Mobile Menu Functionality
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("mobile-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        // Toggle mobile menu
+        hamburger.addEventListener("click", function () {
+          hamburger.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
+
+        // Close menu when clicking on a link
+        const links = navLinks.querySelectorAll("a");
+        links.forEach((link) => {
+          link.addEventListener("click", function () {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (event) {
+          const isClickInsideNav = navLinks.contains(event.target);
+          const isClickOnHamburger = hamburger.contains(event.target);
+
+          if (
+            !isClickInsideNav &&
+            !isClickOnHamburger &&
+            navLinks.classList.contains("active")
+          ) {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+          }
+        });
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="padding-left: 50px">
+      <div class="hero-background">
+        <img src="images/bg image.jpg" alt="Blue Waves Background" />
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to BlueWaves Café</h1>
+          <p>Where everyday starts with a cup and ends with a smile.</p>
+          <p>A refreshing escape by the shore.</p>
+          <div class="cta-buttons">
+            <a href="#menu" class="btn primary-btn">Explore Our Menu</a>
+            <a href="#contact" class="btn secondary-btn">Reserve a Table</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+      <div class="container">
+        <h2 class="section-title">Experience BlueWaves</h2>
+        <div class="video-container reveal">
+          <div class="responsive-video">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/7o1b3hfvvew"
+              title="Blue Waves Cafe Experience"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">Our Cafe</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              Bluewaves Café is a place where calm meets comfort. Inspired by
+              the soothing rhythm of the waves, we offer high-quality coffee,
+              refreshing drinks, and carefully crafted pastries in a relaxed and
+              welcoming space. Whether you're here to unwind, catch up with
+              friends, or get some work done, Bluewaves provides cozy
+              workspaces, fast internet, and a peaceful atmosphere designed for
+              every moment of your day. At Bluewaves, we believe great drinks,
+              warm service, and relaxing vibes create the perfect escape—one cup
+              at a time.
+            </p>
+          </div>
+          <div class="image-gallery">
+            <div class="image-item">
+              <div class="image-wrapper">
+                <img
+                  src="images/cafe.jpg"
+                  alt="Beachside Lounge"
+                  width="600"
+                  height="400"
+                />
+              </div>
+              <div class="content-wrapper">
+                <h3>Cafe</h3>
+                <p>
+                  Start your day with ocean breezes and artisan coffee in our
+                  coastal lounge.
+                </p>
+                <a href="pages/cafe.html" class="view-menu-link"
+                  >View Full Menu</a
+                >
+              </div>
+            </div>
+            <div class="image-item">
+              <div class="image-wrapper">
+                <img
+                  src="images/resort.jpg"
+                  alt="Tiki Bar"
+                  width="600"
+                  height="400"
+                />
+              </div>
+              <div class="content-wrapper">
+                <h3>Resort</h3>
+                <p>
+                  Tropical cocktails and beach vibes await at our
+                  island-inspired bar.
+                </p>
+                <a href="pages/resort.html" class="view-menu-link"
+                  >View Full Menu</a
+                >
+              </div>
+            </div>
+            <div class="image-item">
+              <div class="image-wrapper">
+                <img
+                  src="images/resto.jpg"
+                  alt="Ocean Terrace"
+                  width="600"
+                  height="400"
+                />
+              </div>
+              <div class="content-wrapper">
+                <h3>Restaurant</h3>
+                <p>
+                  Fresh seafood and coastal cuisine with panoramic ocean views.
+                </p>
+                <a href="pages/resto.html" class="view-menu-link"
+                  >View Full Menu</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section
+      id="menu"
+      class="menu"
+      style="
+        background-image:
+          linear-gradient(rgba(26, 26, 26, 0.8), rgba(45, 45, 45, 0.8)),
+          url(&quot;images/restau.jpg&quot;);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      "
+    >
+      <div class="container">
+        <h2
+          class="section-title"
+          style="margin-top: 0px; margin-bottom: 50px; color: white"
+        >
+          Coastal Favorites
+        </h2>
+        <div
+          class="coming-soon-message"
+          style="text-align: center; padding: 60px 20px; color: white"
+        >
+          <i
+            class="fas fa-utensils"
+            style="
+              font-size: 64px;
+              color: #87ceeb;
+              margin-bottom: 20px;
+              display: block;
+            "
+          ></i>
+          <h3 style="font-size: 32px; margin-bottom: 15px; color: #ffd700">
+            Coming Soon!
+          </h3>
+          <p
+            style="
+              font-size: 18px;
+              color: #e0f7ff;
+              max-width: 600px;
+              margin: 0 auto 30px auto;
+              line-height: 1.6;
+            "
+          >
+            We're carefully curating our best sellers for you. Stay tuned for an
+            amazing selection of coastal favorites!
+          </p>
+        </div>
+        <div class="menu-footer">
+          <a href="pages/resto.html" class="btn primary-btn">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <!-- floating bubbles (decorative) -->
+      <div class="contact-bubble cb1"></div>
+      <div class="contact-bubble cb2"></div>
+      <div class="contact-bubble cb3"></div>
+      <div class="contact-bubble cb4"></div>
+
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-content">
+          <!-- LEFT — info cards -->
+          <div class="contact-info">
+            <div class="info-card">
+              <div class="info-card-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="info-card-text">
+                <h3>Address</h3>
+                <p>Talampas, 706, Bustos, 3007 BulacanBay</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="info-card-text">
+                <h3>Hours</h3>
+                <p>Monday – Sunday: 9:00 AM – 12:00 AM</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="info-card-text">
+                <h3>Contact</h3>
+                <p>Phone: <a href="tel:5551234567">09690703942</a></p>
+                <p>
+                  Email:
+                  <a href="mailto:hello@bluewavescafe.com"
+                    >bluewavescaferesort@gmail.com</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT — reservation form -->
+          <div class="contact-form">
+            <h3>Make a Reservation</h3>
+            <p class="form-subtitle">
+              Fill in the details and we'll get back to you shortly.
+            </p>
+            <form
+              id="reservation-form"
+              action="submit-reservation.php"
+              method="POST"
+            >
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Your Phone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="guests">Number of Guests</label>
+                  <select id="guests" name="guests" required>
+                    <option value="" disabled selected>
+                      Select number of guests
+                    </option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6 People</option>
+                    <option value="7+">7+ People</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="date">Date</label>
+                  <input type="date" id="date" name="date" required />
+                </div>
+                <div class="form-group">
+                  <label for="time">Time</label>
+                  <input type="time" id="time" name="time" required />
+                </div>
+              </div>
+              <div class="form-group full-width">
+                <label for="message">Special Requests</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about any special requests or dietary requirements"
+                  rows="3"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn primary-btn contact-submit-btn">
+                <i class="fas fa-utensils"></i> Book Table
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="map-container">
+      <h3>Find Us by the Shore</h3>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d328.85638876822685!2d120.90734170881358!3d14.93209353646074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ab47ac5d1ac5%3A0x357cae43787a59fc!2sBluewave%20Cafe%20and%20Private%20Resort!5e1!3m2!1sen!2sph!4v1770089759731!5m2!1sen!2sph"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
+      </iframe>
+    </div>
+
+    <!-- Customer Ratings Section -->
+    <section class="ratings-section" id="ratings-section">
+      <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="ratings-subtitle">Discover why people love BlueWaves Café</p>
+
+        <!-- Admin Clear Button -->
+        <!--<div style="text-align: center; margin-bottom: 30px;">
+                    <button onclick="clearAllRatings()" class="clear-ratings-btn">
+                        <i class="fas fa-trash-alt"></i> Clear All Ratings
+                    </button>
+                </div>
+                -->
+        <div class="ratings-grid" id="ratings-grid">
+          <!-- Ratings will be dynamically loaded here -->
+          <div class="no-ratings" id="no-ratings">
+            <i
+              class="fas fa-star"
+              style="font-size: 48px; color: #87ceeb; margin-bottom: 15px"
+            ></i>
+            <p>No ratings yet. Be the first to share your experience!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* Clear Ratings Button */
+      .clear-ratings-btn {
+        padding: 12px 24px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+      }
+
+      .clear-ratings-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+      }
+
+      .clear-ratings-btn:active {
+        transform: translateY(0);
+      }
+
+      .clear-ratings-btn i {
+        margin-right: 8px;
+      }
+
+      /* Ratings Section Styles */
+      .ratings-section {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      }
+
+      .ratings-subtitle {
+        text-align: center;
+        color: #666;
+        margin-top: -30px;
+        margin-bottom: 50px;
+        font-size: 16px;
+      }
+
+      .ratings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .rating-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 64, 128, 0.1);
+        transition: all 0.3s ease;
+        border-left: 4px solid #87ceeb;
+      }
+
+      .rating-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 64, 128, 0.2);
+      }
+
+      .rating-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .rating-name {
+        font-weight: 600;
+        color: #004080;
+        font-size: 18px;
+      }
+
+      .rating-stars {
+        color: #ffd700;
+        font-size: 16px;
+      }
+
+      .rating-date {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 10px;
+      }
+
+      .rating-message {
+        color: #555;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+
+      .no-ratings {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+      }
+
+      .no-ratings p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .ratings-section {
+          padding: 60px 15px;
+        }
+
+        .ratings-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .rating-card {
+          padding: 20px;
+        }
+
+        .clear-ratings-btn {
+          padding: 10px 20px;
+          font-size: 13px;
+        }
+      }
+    </style>
+
+    <!-- Compact Feedback Prompt -->
+    <div class="feedback-prompt" id="feedback-prompt">
+      <div class="prompt-content">
+        <h4><i class="fas fa-star"></i> Want to Rate Us?</h4>
+        <p>Share your experience with us!</p>
+        <div class="prompt-buttons">
+          <button class="prompt-btn rate" onclick="goToRating()">
+            <i class="fas fa-heart"></i> Rate Now
+          </button>
+          <button class="prompt-btn later" onclick="closeFeedbackPrompt()">
+            <i class="fas fa-clock"></i> Later
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Tab Button -->
+    <button
+      class="feedback-tab hidden"
+      id="feedback-tab"
+      onclick="openFeedbackPrompt()"
+    >
+      <i class="fas fa-star"></i>
+      RATE US
+    </button>
+
+    <!-- Footer -->
+    <footer
+      class="footer"
+      style="background: linear-gradient(135deg, #004080 0%, #006994 100%)"
+    >
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <div class="footer-logo">
+              <h2 style="color: #87ceeb">BlueWaves Café</h2>
+              <p style="color: #b3e5fc">
+                Where the ocean meets exceptional taste
+              </p>
+            </div>
+            <div class="footer-contact">
+              <h3 style="color: #87ceeb">Contact Us</h3>
+              <p style="color: #e0f7ff">
+                <i class="location-icon"></i> Talampas, 706, Bustos, 3007
+                Bulacan
+              </p>
+              <p style="color: #e0f7ff">
+                <i class="phone-icon"></i> 09690703942
+              </p>
+              <p style="color: #e0f7ff">
+                <i class="email-icon"></i> bluewavescaferesort@gmail.com
+              </p>
+            </div>
+          </div>
+
+          <div class="opening-hours">
+            <h3 style="color: #87ceeb">Opening Hours</h3>
+            <ul style="color: #e0f7ff">
+              <li>Monday - Sunday: <span>9:00 AM - 12:00 AM</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-newsletter">
+            <div class="social-icons">
+              <h3 style="color: #87ceeb">Follow Us</h3>
+              <div class="social-links">
+                <a
+                  href="https://web.facebook.com/profile.php?id=61586865635373&rdid=Vv3XchXV1AAwVDSS&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F1AiqVtn78i%3F_rdc%3D1%26_rdr#"
+                  target="_blank"
+                  aria-label="Facebook"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/bluewavescafeandresort?igsh=MXhmMXV5YXdiejduaw%3D%3D"
+                  target="_blank"
+                  aria-label="Instagram"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@bluewaves.cafe.re"
+                  target="_blank"
+                  aria-label="WhatsApp"
+                >
+                  <i class="fab fa-tiktok"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="developer-badge">
+          <a
+            href="https://www.facebook.com/ZenpaiDaisuki69/"
+            target="_blank"
+            rel="noopener"
+          >
+            <small style="color: #b3e5fc">Developed by ~ AG (klumcee) ~</small>
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          <p style="color: #e0f7ff">
+            &copy; 2025 BlueWaves Café. All rights reserved.
+          </p>
+          <div class="footer-legal">
+            <a href="#" rel="noopener" style="color: #b3e5fc">Privacy Policy</a>
+            <a href="#" rel="noopener" style="color: #b3e5fc"
+              >Terms of Service</a
+            >
+            <a href="#" rel="noopener" style="color: #b3e5fc">Accessibility</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+      // Clear All Ratings Function
+      function clearAllRatings() {
+        if (
+          confirm(
+            "Are you sure you want to delete all ratings? This action cannot be undone!",
+          )
+        ) {
+          localStorage.removeItem("bluewavesRatings");
+          alert("All ratings have been successfully cleared!");
+          location.reload(); // Reload the page to update the display
+        }
+      }
+
+      // Compact Feedback Prompt Functions
+      function closeFeedbackPrompt() {
+        const prompt = document.getElementById("feedback-prompt");
+        const tab = document.getElementById("feedback-tab");
+
+        prompt.classList.remove("show");
+        prompt.classList.add("collapsed");
+
+        // Show the tab button after closing
+        setTimeout(function () {
+          tab.classList.remove("hidden");
+        }, 400);
+      }
+
+      function openFeedbackPrompt() {
+        const prompt = document.getElementById("feedback-prompt");
+        const tab = document.getElementById("feedback-tab");
+
+        tab.classList.add("hidden");
+        prompt.classList.remove("collapsed");
+        prompt.classList.add("show");
+      }
+
+      function goToRating() {
+        // Redirect to rating page
+        window.location.href = "pages/rate.html";
+      }
+
+      // Show prompt after 5 seconds
+      window.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          const prompt = document.getElementById("feedback-prompt");
+          prompt.classList.add("show");
+        }, 5000);
+
+        // Load and display ratings
+        loadRatings();
+      });
+
+      // Load ratings from localStorage
+      function loadRatings() {
+        const ratingsGrid = document.getElementById("ratings-grid");
+        const noRatings = document.getElementById("no-ratings");
+
+        // Get ratings from localStorage
+        let ratings = localStorage.getItem("bluewavesRatings");
+
+        if (ratings) {
+          ratings = JSON.parse(ratings);
+
+          // Filter only 4 and 5 star ratings
+          const goodRatings = ratings.filter((rating) => rating.stars >= 4);
+
+          if (goodRatings.length > 0) {
+            noRatings.style.display = "none";
+
+            // Display ratings
+            goodRatings.forEach((rating) => {
+              const ratingCard = createRatingCard(rating);
+              ratingsGrid.appendChild(ratingCard);
+            });
+          }
+        }
+      }
+
+      // Create rating card element
+      function createRatingCard(rating) {
+        const card = document.createElement("div");
+        card.className = "rating-card";
+
+        const stars = "★".repeat(rating.stars) + "☆".repeat(5 - rating.stars);
+
+        card.innerHTML = `
+                    <div class="rating-header">
+                        <div class="rating-name">${rating.name}</div>
+                        <div class="rating-stars">${stars}</div>
+                    </div>
+                    <div class="rating-date">${rating.date}</div>
+                    <div class="rating-message">${rating.message}</div>
+                `;
+
+        return card;
+      }
+
+      // Modal functions
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      window.onclick = function (event) {
+        const modals = document.getElementsByClassName("modal");
+        for (let modal of modals) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+          }
+        }
+      };
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const modals = document.getElementsByClassName("modal");
+          for (let modal of modals) {
+            if (modal.style.display === "block") {
+              modal.style.display = "none";
+              document.body.style.overflow = "auto";
+            }
+          }
+        }
+      });
+
+      // Mobile menu toggle
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        mobileMenu.addEventListener("click", function () {
+          navLinks.classList.toggle("active");
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close menu when clicking on a link
+        const links = navLinks.querySelectorAll("a");
+        links.forEach((link) => {
+          link.addEventListener("click", function () {
+            navLinks.classList.remove("active");
+            mobileMenu.classList.remove("active");
+          });
+        });
+
+        // Form submission
+        const form = document.getElementById("reservation-form");
+        form.setAttribute("action", "https://formspree.io/f/xvzqevpo");
+        form.setAttribute("method", "POST");
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("name");
+          const email = document.getElementById("email");
+          const phone = document.getElementById("phone");
+          const date = document.getElementById("date");
+          const time = document.getElementById("time");
+          const guests = document.getElementById("guests");
+
+          form.querySelectorAll(".form-group").forEach((group) => {
+            group.classList.remove("error");
+          });
+
+          const existingMessages = form.querySelectorAll(
+            ".success-message, .error-message",
+          );
+          existingMessages.forEach((msg) => msg.remove());
+
+          let isValid = true;
+
+          if (name.value.trim() === "") {
+            name.closest(".form-group").classList.add("error");
+            isValid = false;
+          }
+
+          if (email.value.trim() === "" || !email.value.includes("@")) {
+            email.closest(".form-group").classList.add("error");
+            isValid = false;
+          }
+
+          if (phone.value.trim() === "") {
+            phone.closest(".form-group").classList.add("error");
+            isValid = false;
+          }
+
+          if (date.value === "") {
+            date.closest(".form-group").classList.add("error");
+            isValid = false;
+          }
+
+          if (time.value === "") {
+            time.closest(".form-group").classList.add("error");
+            isValid = false;
+          }
+
+          if (guests.value === "") {
+            guests.closest(".form-group").classList.add("error");
+            isValid = false;
+          }
+
+          if (!isValid) {
+            return;
+          }
+
+          const submitButton = form.querySelector('button[type="submit"]');
+          submitButton.disabled = true;
+          submitButton.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+          const formData = new FormData(form);
+
+          fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              throw new Error("Network response was not ok.");
+            })
+            .then((data) => {
+              const successMessage = document.createElement("div");
+              successMessage.classList.add("success-message");
+              successMessage.innerHTML =
+                '<i class="fas fa-check-circle"></i> Reservation submitted successfully! We will contact you soon.';
+              form.prepend(successMessage);
+              form.reset();
+
+              const today = new Date();
+              const formattedDate = today.toISOString().split("T")[0];
+              document.getElementById("date").value = formattedDate;
+            })
+            .catch((error) => {
+              const errorMessage = document.createElement("div");
+              errorMessage.classList.add("error-message");
+              errorMessage.textContent =
+                "Oops! There was a problem submitting your reservation. Please try again.";
+              form.prepend(errorMessage);
+              console.error("Error:", error);
+            })
+            .finally(() => {
+              submitButton.disabled = false;
+              submitButton.innerHTML =
+                '<i class="fas fa-utensils"></i> Book Table';
+            });
+        });
+
+        const dateInput = document.getElementById("date");
+        if (dateInput) {
+          const today = new Date();
+          const formattedDate = today.toISOString().split("T")[0];
+          dateInput.value = formattedDate;
+          dateInput.min = formattedDate;
+        }
+      });
+    </script>
+  </body>
+</html>

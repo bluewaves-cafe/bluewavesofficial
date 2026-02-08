@@ -1,0 +1,1857 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluewaves - Fine Dining</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="../images/bluewaves.jpg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+   RESET
+   ============================================================ */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ============================================================
+   ROOT TOKENS  — same base as cafe, gold accent for dining
+   ============================================================ */
+      :root {
+        --navy: #0b1929;
+        --deep-blue: #0d2137;
+        --ocean: #1a3c5e;
+        --wave: #2e6fa0;
+        --sky: #5ba3d6;
+        --foam: #a8d8ea;
+        --sand: #f5efe6;
+        --cream: #faf8f4;
+        --gold: #d4af37;
+        --gold-light: #e8cd6a;
+        --gold-dark: #b08e25;
+        --accent: #d4af37;
+        --accent2: #b08e25;
+        --text-dark: #0b1929;
+        --text-mid: #3a5a7c;
+        --text-light: #6e8da8;
+        --white: #ffffff;
+        --shadow-sm: 0 2px 12px rgba(11, 25, 41, 0.08);
+        --shadow-md: 0 6px 28px rgba(11, 25, 41, 0.12);
+        --shadow-lg: 0 12px 48px rgba(11, 25, 41, 0.18);
+        --radius: 16px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--cream);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ============================================================
+   HEADER
+   ============================================================ */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        padding: 20px 48px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(11, 25, 41, 0.72);
+        backdrop-filter: blur(20px) saturate(1.3);
+        -webkit-backdrop-filter: blur(20px) saturate(1.3);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+        transition:
+          padding 0.35s,
+          background 0.35s;
+      }
+      header.scrolled {
+        padding: 12px 48px;
+        background: rgba(11, 25, 41, 0.92);
+      }
+
+      header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      header p {
+        font-size: 0.72rem;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 0;
+        font-weight: 400;
+      }
+
+      /* ============================================================
+   HERO
+   ============================================================ */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          160deg,
+          #060e1a 0%,
+          #0b1929 30%,
+          #0f2540 55%,
+          #142d4a 100%
+        ) !important;
+        padding: 0 !important;
+        text-align: center !important;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle 220px at 12% 65%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 160px at 78% 25%,
+            rgba(91, 163, 214, 0.07) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 140px at 55% 78%,
+            rgba(212, 175, 55, 0.06) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 260px at 88% 72%,
+            rgba(46, 111, 160, 0.1) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 100px at 35% 20%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 70%
+          );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero .gold-line-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--gold) 30%,
+          var(--gold) 70%,
+          transparent 100%
+        );
+        opacity: 0.45;
+        z-index: 3;
+      }
+
+      .wave-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+        z-index: 2;
+      }
+      .wave-bottom svg {
+        display: block;
+        width: 100%;
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 3;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .hero .container::before {
+        content: "✦  Fine Dining at Bluewaves";
+        display: inline-block;
+        margin-bottom: 24px;
+        padding: 7px 24px;
+        border-radius: 30px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        background: rgba(212, 175, 55, 0.07);
+        color: var(--gold-light);
+        font-size: 0.78rem;
+        letter-spacing: 2.8px;
+        text-transform: uppercase;
+      }
+
+      .hero .container h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 7vw, 5.4rem) !important;
+        font-weight: 400 !important;
+        color: var(--white) !important;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: none !important;
+        opacity: 1 !important;
+      }
+      .hero .container h1::after {
+        content: "Fine Dining";
+        display: block;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--gold);
+        font-size: 0.68em;
+        margin-top: 6px;
+        letter-spacing: 4px;
+      }
+
+      .hero .container::after {
+        content: "An unparalleled culinary experience";
+        display: block;
+        margin-top: 24px;
+        color: rgba(255, 255, 255, 0.42);
+        font-size: 1.02rem;
+        font-weight: 300;
+        letter-spacing: 0.4px;
+      }
+
+      .hero .container h1::before {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+        margin: 18px auto 0;
+        opacity: 0.6;
+      }
+
+      /* ============================================================
+   ABOUT RESTAURANT
+   ============================================================ */
+      .about-restaurant {
+        padding: 110px 48px;
+        background: var(--cream);
+      }
+      .about-restaurant .container {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .about-restaurant h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        font-weight: 400;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      .about-restaurant h2::after {
+        content: "";
+        display: block;
+        width: 52px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+        border-radius: 2px;
+        margin: 14px auto 0;
+      }
+      .about-restaurant p {
+        color: var(--text-mid);
+        font-size: 0.96rem;
+        line-height: 1.9;
+        margin-bottom: 16px;
+        font-weight: 300;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .info-pills {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 34px;
+      }
+      .pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--white);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 40px;
+        padding: 10px 22px;
+        box-shadow: var(--shadow-sm);
+        font-size: 0.84rem;
+        color: var(--text-mid);
+        font-weight: 500;
+      }
+      .pill-icon {
+        font-size: 1.1rem;
+      }
+
+      /* ============================================================
+   MENU SECTION
+   ============================================================ */
+      .menu-section {
+        padding: 110px 48px;
+        background: linear-gradient(180deg, #eef3f8 0%, #e4ecf3 100%);
+      }
+      .menu-section .container {
+        max-width: 1060px;
+        margin: 0 auto;
+      }
+      .menu-section .container > h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        font-weight: 400;
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .menu-section .container > h2::after {
+        content: "";
+        display: block;
+        width: 52px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+        border-radius: 2px;
+        margin: 14px auto 0;
+      }
+
+      .tab-nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 38px 0 42px;
+      }
+      .tab-button {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(46, 111, 160, 0.15);
+        color: var(--text-mid);
+        padding: 10px 24px;
+        border-radius: 30px;
+        font-size: 0.84rem;
+        font-weight: 500;
+        letter-spacing: 0.6px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+      .tab-button:hover {
+        background: rgba(212, 175, 55, 0.08);
+        color: var(--gold-dark);
+        border-color: rgba(212, 175, 55, 0.25);
+      }
+      .tab-button.active {
+        background: linear-gradient(135deg, #1a3c5e, #142d4a);
+        color: var(--gold-light);
+        border-color: transparent;
+        box-shadow: 0 4px 18px rgba(11, 25, 41, 0.25);
+      }
+
+      .tab-content {
+        display: none;
+        animation: fadeSlide 0.38s ease;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      @keyframes fadeSlide {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .menu-category {
+        margin-bottom: 44px;
+      }
+      .menu-category h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--ocean);
+        padding-bottom: 12px;
+        border-bottom: 1.5px solid rgba(212, 175, 55, 0.25);
+        margin-bottom: 20px;
+        letter-spacing: 0.4px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .menu-category h3::before {
+        content: "◆";
+        color: var(--gold);
+        font-size: 0.65rem;
+        flex-shrink: 0;
+      }
+
+      .menu-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      .menu-item {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 0;
+        border: 1px solid rgba(46, 111, 160, 0.07);
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+        display: flex;
+        flex-direction: column;
+        min-height: 140px;
+        overflow: hidden;
+      }
+      .menu-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(212, 175, 55, 0.22);
+      }
+      .menu-item-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #e4ecf3, #d6e3ed);
+      }
+      .menu-item-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .menu-item h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+      }
+      .menu-item .description {
+        font-size: 0.83rem;
+        color: var(--text-light);
+        flex: 1;
+        margin-bottom: 14px;
+        font-weight: 300;
+        line-height: 1.6;
+      }
+      .menu-item .price {
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: var(--gold-dark);
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        line-height: 1.45;
+      }
+      .menu-item .price::before {
+        content: "";
+        display: inline-block;
+        width: 18px;
+        min-width: 18px;
+        height: 2px;
+        background: var(--gold);
+        border-radius: 1px;
+        margin-top: 7px;
+      }
+
+      .menu-note {
+        margin-top: 30px;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.08),
+          rgba(212, 175, 55, 0.14)
+        );
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        padding: 14px 20px;
+        border-radius: 12px;
+        font-weight: 600;
+        color: var(--gold-dark);
+        font-size: 0.88rem;
+        letter-spacing: 0.4px;
+      }
+      .note-icon {
+        margin: 0 6px;
+      }
+
+      /* ============================================================
+   BACK LINK
+   ============================================================ */
+      .back-link {
+        display: inline-block;
+        margin: 44px 0 20px;
+        color: var(--wave);
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: color 0.3s;
+      }
+      .back-link:hover {
+        color: var(--gold-dark);
+      }
+
+      /* ============================================================
+   FOOTER
+   ============================================================ */
+      footer {
+        background: var(--navy);
+        padding: 42px 48px;
+        text-align: center;
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.82rem;
+        letter-spacing: 0.7px;
+      }
+
+      /* ============================================================
+   BACK TO TOP
+   ============================================================ */
+      a.back-to-top {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--navy);
+        border: 1px solid rgba(212, 175, 55, 0.28);
+        color: var(--gold-light);
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.35s,
+          transform 0.35s,
+          background 0.3s;
+        pointer-events: none;
+        z-index: 500;
+        text-decoration: none;
+      }
+      a.back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      a.back-to-top:hover {
+        background: var(--ocean);
+      }
+
+      /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+      @media (max-width: 720px) {
+        header {
+          padding: 16px 22px;
+        }
+        header.scrolled {
+          padding: 10px 22px;
+        }
+        .hero .container h1 {
+          font-size: 2.4rem !important;
+        }
+        .about-restaurant {
+          padding: 70px 22px;
+        }
+        .menu-section {
+          padding: 70px 22px;
+        }
+        .menu-items {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          padding: 34px 22px;
+        }
+      }
+      @media (max-width: 420px) {
+        .tab-button {
+          padding: 8px 16px;
+          font-size: 0.79rem;
+        }
+        .hero .container h1 {
+          font-size: 2rem !important;
+        }
+      }
+
+      /* ============================================================
+   SCROLLBAR
+   ============================================================ */
+      ::-webkit-scrollbar {
+        width: 7px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--sand);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- ─── HEADER ─── -->
+      <header id="siteHeader">
+        <h1>Bluwaves</h1>
+        <p>Fine Dining</p>
+      </header>
+
+      <!-- ─── HERO ─── -->
+      <section
+        class="hero"
+        style="
+          background-image: url(&quot;../assets/images/dinig.jpg&quot;);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          padding: 100px 0;
+          text-align: center;
+        "
+      >
+        <div class="gold-line-top"></div>
+        <div class="wave-bottom">
+          <svg
+            viewBox="0 0 1440 100"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="#eef3f8"
+              fill-opacity="0.4"
+              d="M0,55 C200,25 500,75 720,48 C940,22 1180,68 1440,38 L1440,100 L0,100 Z"
+            />
+            <path
+              fill="#eef3f8"
+              d="M0,72 C280,48 580,88 860,62 C1060,44 1280,76 1440,58 L1440,100 L0,100 Z"
+            />
+          </svg>
+        </div>
+        <div class="container">
+          <h1
+            style="
+              color: #d4af37;
+              margin: 0;
+              padding: 20px;
+              background-color: rgba(0, 0, 0, 0.7);
+            "
+          >
+            Welcome to Bluewaves
+          </h1>
+        </div>
+      </section>
+
+      <!-- ─── ABOUT ─── -->
+      <section id="about-restaurant" class="about-restaurant">
+        <div class="container">
+          <h2>About Bluewaves</h2>
+          <p>
+            Nestled along the riverfront with spectacular views, Bluewaves
+            offers an unparalleled dining experience combining contemporary
+            cuisine with traditional techniques. Our elegant dining room
+            provides the perfect backdrop for romantic dinners, business
+            meetings, or special celebrations.
+          </p>
+          <p>
+            Our executive chef brings over 20 years of culinary expertise,
+            crafting seasonal menus that showcase locally-sourced ingredients
+            and artisanal products. Each dish is meticulously prepared and
+            beautifully presented to delight both the palate and the eye.
+          </p>
+          <p>
+            Open Tuesday through Sunday from 5 PM to 10 PM, we invite you to
+            experience the art of fine dining at Bluewaves.
+          </p>
+          <div class="info-pills">
+            <div class="pill">
+              <span class="pill-icon">🕖</span> Tue – Sun, 5 – 10 PM
+            </div>
+            <div class="pill">
+              <span class="pill-icon">🌿</span> Locally Sourced
+            </div>
+            <div class="pill">
+              <span class="pill-icon">👨‍🍳</span> 20+ Years Expertise
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── MENU ─── -->
+      <section id="menu" class="menu-section">
+        <div class="container">
+          <h2>Our Menu</h2>
+          <div class="tab-container">
+            <div class="tab-nav">
+              <button
+                class="tab-button active"
+                onclick="openTab(event, 'breakfast')"
+              >
+                All Day Breakfast
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'ricemeal')">
+                Rice Meal
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'alacart')">
+                Ala Cart
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'pasta')">
+                Pasta
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'salad')">
+                Salad
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'snacks')">
+                Snacks & Burgers
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'pizza')">
+                Pizza
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'appetizers')">
+                Appetizers & Sides
+              </button>
+            </div>
+
+            <!-- ALL DAY BREAKFAST -->
+            <div id="breakfast" class="tab-content active">
+              <div class="menu-category">
+                <h3>All Day Breakfast</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=300&fit=crop"
+                      alt="Hotsilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Hotsilog</h4>
+                      <p class="description">
+                        Classic Filipino breakfast with hotdog, garlic rice, and
+                        fried egg
+                      </p>
+                      <p class="price">₱109</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop"
+                      alt="Bacsilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bacsilog</h4>
+                      <p class="description">
+                        Bacon, garlic rice, and fried egg combination
+                      </p>
+                      <p class="price">₱119</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/bangsilog.jpg"
+                      alt="Bangsilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bangsilog</h4>
+                      <p class="description">
+                        Bangus (milkfish), garlic rice, and fried egg
+                      </p>
+                      <p class="price">₱119</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop"
+                      alt="Longsilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Longsilog</h4>
+                      <p class="description">
+                        Filipino longganisa sausage with garlic rice and fried
+                        egg
+                      </p>
+                      <p class="price">₱119</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
+                      alt="Tocilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Tocilog</h4>
+                      <p class="description">
+                        Sweet cured pork tocino with garlic rice and fried egg
+                      </p>
+                      <p class="price">₱119</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop"
+                      alt="Chixsilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chixsilog</h4>
+                      <p class="description">
+                        Chicken sausage with garlic rice and fried egg
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/cornsilog.jpg"
+                      alt="Corned Beef Silog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Corned Beef Silog</h4>
+                      <p class="description">
+                        Corned beef with garlic rice and fried egg
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop"
+                      alt="Tapsilog"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Tapsilog</h4>
+                      <p class="description">
+                        Marinated beef tapa with garlic rice and fried egg
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/hungarian.png"
+                      alt="Hungarian Sausage"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Hungarian Sausage</h4>
+                      <p class="description">
+                        Grilled Hungarian sausage with garlic rice and fried egg
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop"
+                      alt="English Breakfast"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>English Breakfast</h4>
+                      <p class="description">
+                        Traditional English breakfast platter
+                      </p>
+                      <p class="price">₱159</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop"
+                      alt="Bluewaves VIP Breakfast"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bluewaves VIP Breakfast</h4>
+                      <p class="description">
+                        Our signature special breakfast combination
+                      </p>
+                      <p class="price">₱179</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RICE MEAL -->
+            <div id="ricemeal" class="tab-content">
+              <div class="menu-category">
+                <h3>Rice Meal</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=400&h=300&fit=crop"
+                      alt="Pork Sisig"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pork Sisig</h4>
+                      <p class="description">
+                        Sizzling chopped pork with onions and chili
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop"
+                      alt="Ala King"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Ala King</h4>
+                      <p class="description">
+                        Grilled chicken with special sauce and vegetables
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=400&h=300&fit=crop"
+                      alt="Pork Tonkatsu"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pork Tonkatsu</h4>
+                      <p class="description">
+                        Crispy breaded pork cutlet served with rice and
+                        vegetables
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=400&h=300&fit=crop"
+                      alt="Crispy Kare-Kare"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Crispy Kare-Kare</h4>
+                      <p class="description">
+                        Crispy pork with traditional peanut sauce
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/lk.jpg"
+                      alt="Lechon Kawali"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Lechon Kawali</h4>
+                      <p class="description">
+                        Crispy pork belly with garlic rice and sambal
+                      </p>
+                      <p class="price">₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&h=300&fit=crop"
+                      alt="Classic Fried Chicken"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Classic Fried Chicken</h4>
+                      <p class="description">
+                        Crispy fried chicken with garlic rice and vegetables
+                      </p>
+                      <p class="price">₱139</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ALA CART -->
+            <div id="alacart" class="tab-content">
+              <div class="menu-category">
+                <h3>Ala Cart</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop"
+                      alt="Sizzling Tofu"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Sizzling Tofu</h4>
+                      <p class="description">
+                        Crispy tofu served on a sizzling plate
+                      </p>
+                      <p class="price">₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&h=300&fit=crop"
+                      alt="Butter Shrimp"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Butter Shrimp</h4>
+                      <p class="description">
+                        Succulent shrimp in rich butter sauce
+                      </p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=400&h=300&fit=crop"
+                      alt="Pork Sisig"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pork Sisig</h4>
+                      <p class="description">
+                        Sizzling chopped pork with onions and chili
+                      </p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1540914124281-342587941389?w=400&h=300&fit=crop"
+                      alt="Gising Gising"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Gising Gising</h4>
+                      <p class="description">
+                        Spicy green beans with coconut milk
+                      </p>
+                      <p class="price">₱249</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=400&h=300&fit=crop"
+                      alt="Crispy Kare-Kare"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Crispy Kare-Kare</h4>
+                      <p class="description">
+                        Crispy pork with traditional peanut sauce
+                      </p>
+                      <p class="price">₱249</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=400&h=300&fit=crop"
+                      alt="Chicken Wings"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chicken Wings</h4>
+                      <p class="description">
+                        Crispy chicken wings with garlic sauce
+                      </p>
+                      <p class="price">₱249</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PASTA -->
+            <div id="pasta" class="tab-content">
+              <div class="menu-category">
+                <h3>Pasta</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&h=300&fit=crop"
+                      alt="Tuna pesto"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Tuna pesto</h4>
+                      <p class="description">
+                        Pasta with tuna in basil pesto sauce
+                      </p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop"
+                      alt="Filipino Spaghetti"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Filipino Spaghetti</h4>
+                      <p class="description">
+                        Sweet-style Filipino spaghetti with hotdogs
+                      </p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=400&h=300&fit=crop"
+                      alt="Chicken Alfredo"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chicken Alfredo</h4>
+                      <p class="description">
+                        Creamy Alfredo pasta with grilled chicken
+                      </p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=300&fit=crop"
+                      alt="Pasta negra"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pasta negra</h4>
+                      <p class="description">Squid ink pasta with seafood</p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop"
+                      alt="Creamy Mushroom Pasta"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Creamy Mushroom Pasta</h4>
+                      <p class="description">
+                        Rich and creamy mushroom sauce over pasta
+                      </p>
+                      <p class="price">₱249</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&h=300&fit=crop"
+                      alt="Aligue Pasta"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Aligue Pasta</h4>
+                      <p class="description">Pasta with crab fat sauce</p>
+                      <p class="price">₱229</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=400&h=300&fit=crop"
+                      alt="Bolognese pasta"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bolognese pasta</h4>
+                      <p class="description">Classic meat sauce pasta</p>
+                      <p class="price">₱229</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SALAD -->
+            <div id="salad" class="tab-content">
+              <div class="menu-category">
+                <h3>Salads</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?w=400&h=300&fit=crop"
+                      alt="Shirazi"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Shirazi</h4>
+                      <p class="description">
+                        Fresh Persian cucumber and tomato salad
+                      </p>
+                      <p class="price">₱159</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=400&h=300&fit=crop"
+                      alt="Fatush"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Fatush</h4>
+                      <p class="description">
+                        Levantine bread salad with mixed greens and sumac
+                      </p>
+                      <p class="price">₱179</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400&h=300&fit=crop"
+                      alt="Caesar Salad"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Caesar Salad</h4>
+                      <p class="description">
+                        Romaine lettuce with Caesar dressing and croutons
+                      </p>
+                      <p class="price">₱229</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
+                      alt="Kani Salad"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Kani Salad</h4>
+                      <p class="description">
+                        Fresh kani (crab) salad with mixed greens and citrus
+                        dressing
+                      </p>
+                      <p class="price">₱229</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&fit=crop"
+                      alt="Greek Salad"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Greek Salad</h4>
+                      <p class="description">
+                        Traditional Greek salad with feta and olives
+                      </p>
+                      <p class="price">₱249</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SNACKS & BURGERS -->
+            <div id="snacks" class="tab-content">
+              <div class="menu-category">
+                <h3>Snacks & Burgers</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop"
+                      alt="Clubhouse Sandwich"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Clubhouse Sandwich</h4>
+                      <p class="description">
+                        Triple-decker sandwich with chicken, bacon, and fresh
+                        vegetables
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop"
+                      alt="Bluewaves Fresh Fries"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bluewaves Fresh Fries</h4>
+                      <p class="description">
+                        Crispy golden fries made fresh daily
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=400&h=300&fit=crop"
+                      alt="Quesadilla"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Quesadilla</h4>
+                      <p class="description">
+                        Grilled tortilla filled with cheese and your choice of
+                        filling
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop"
+                      alt="Cheesy Chicken Burger"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cheesy Chicken Burger</h4>
+                      <p class="description">
+                        Juicy chicken patty with melted cheese
+                      </p>
+                      <p class="price">₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1551782450-17144efb9c50?w=400&h=300&fit=crop"
+                      alt="Bluewaves VIP Burger"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bluewaves VIP Burger</h4>
+                      <p class="description">
+                        Premium burger with special sauce and premium
+                        ingredients
+                      </p>
+                      <p class="price">₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop"
+                      alt="Cheesy Beef Burger"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cheesy Beef Burger</h4>
+                      <p class="description">
+                        Classic beef burger with cheese and special sauce
+                      </p>
+                      <p class="price">₱149</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PIZZA -->
+            <div id="pizza" class="tab-content">
+              <div class="menu-category">
+                <h3>Pizza</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
+                      alt="New York Style"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>New York Style</h4>
+                      <p class="description">
+                        Classic thin crust New York style pizza
+                      </p>
+                      <p class="price">10" ₱289 | 12" ₱389</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop"
+                      alt="Pepperoni"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pepperoni</h4>
+                      <p class="description">
+                        Loaded with premium pepperoni slices
+                      </p>
+                      <p class="price">10" ₱289 | 12" ₱389</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop"
+                      alt="Margarita"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Margarita</h4>
+                      <p class="description">
+                        Fresh tomatoes, mozzarella, and basil
+                      </p>
+                      <p class="price">10" ₱289 | 12" ₱389</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop"
+                      alt="Veggies Delux"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Veggies Delux</h4>
+                      <p class="description">
+                        Garden fresh vegetables on thin crust
+                      </p>
+                      <p class="price">10" ₱289 | 12" ₱389</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop"
+                      alt="Hawaiian"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Hawaiian</h4>
+                      <p class="description">
+                        Ham and pineapple classic combination
+                      </p>
+                      <p class="price">10" ₱289 | 12" ₱389</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=400&h=300&fit=crop"
+                      alt="Meat Lovers"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Meat Lovers</h4>
+                      <p class="description">Loaded with assorted meats</p>
+                      <p class="price">10" ₱349 | 12" ₱489</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/cspinach.jpg"
+                      alt="Creamy Spinach"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Creamy Spinach</h4>
+                      <p class="description">Spinach in creamy white sauce</p>
+                      <p class="price">10" ₱349 | 12" ₱489</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/tcheese.jpg"
+                      alt="Triple Cheese"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Triple Cheese</h4>
+                      <p class="description">Three types of premium cheese</p>
+                      <p class="price">10" ₱349 | 12" ₱489</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=400&h=300&fit=crop"
+                      alt="Cheese Zataar"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cheese Zataar</h4>
+                      <p class="description">Cheese with zataar seasoning</p>
+                      <p class="price">10" ₱349 | 12" ₱489</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&h=300&fit=crop"
+                      alt="Manaeesh"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Manaeesh</h4>
+                      <p class="description">
+                        Middle Eastern style flatbread with cheese and za'atar
+                      </p>
+                      <p class="price">10" ₱349 | 12" ₱489</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/bluespec.jpg"
+                      alt="Bluewaves Special"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Bluewaves Special</h4>
+                      <p class="description">
+                        Our signature house special pizza
+                      </p>
+                      <p class="price">10" ₱399 | 12" ₱489</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- APPETIZERS & SIDES -->
+            <div id="appetizers" class="tab-content">
+              <div class="menu-category">
+                <h3>Appetizers</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=400&h=300&fit=crop"
+                      alt="Chicken Tenders"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chicken Tenders</h4>
+                      <p class="description">
+                        Crispy breaded chicken tenders served with dipping sauce
+                      </p>
+                      <p class="price">₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&h=300&fit=crop"
+                      alt="Chicken Karaage"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chicken Karaage</h4>
+                      <p class="description">
+                        Japanese-style fried chicken marinated in soy and ginger
+                      </p>
+                      <p class="price">₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1580217593608-61931cefc821?w=400&h=300&fit=crop"
+                      alt="Tempura"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Tempura</h4>
+                      <p class="description">
+                        Lightly battered and fried vegetables and shrimp
+                      </p>
+                      <p class="price">₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=300&fit=crop"
+                      alt="French Fries"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>French Fries</h4>
+                      <p class="description">
+                        Classic golden crispy French fries
+                      </p>
+                      <p class="price">₱159</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=300&fit=crop"
+                      alt="Potato Wedges"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Potato Wedges</h4>
+                      <p class="description">
+                        Seasoned potato wedges with sour cream dip
+                      </p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=300&fit=crop"
+                      alt="Mojo's"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Mojo's</h4>
+                      <p class="description">Crispy seasoned potato rounds</p>
+                      <p class="price">₱189</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=400&h=300&fit=crop"
+                      alt="Nachos"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Nachos</h4>
+                      <p class="description">
+                        Tortilla chips topped with cheese, salsa, and jalapeños
+                      </p>
+                      <p class="price">₱179</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="menu-category">
+                <h3>Rice Options</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="../images/plain.jpg"
+                      alt="Plain Rice"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Plain Rice</h4>
+                      <p class="description">Steamed jasmine rice</p>
+                      <p class="price">Solo ₱25</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
+                      alt="Fried Rice"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Fried Rice</h4>
+                      <p class="description">Classic garlic fried rice</p>
+                      <p class="price">Solo ₱30 | Sharing ₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
+                      alt="Chao Pan"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chao Pan</h4>
+                      <p class="description">
+                        Special fried rice with Chinese sausage and vegetables
+                      </p>
+                      <p class="price">Solo ₱45 | Sharing ₱159</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
+                      alt="Egg Fried Rice"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Egg Fried Rice</h4>
+                      <p class="description">Fried rice with scrambled eggs</p>
+                      <p class="price">Solo ₱45 | Sharing ₱159</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="menu-category">
+                <h3>Add-Ons</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="../images/garlic.jpg"
+                      alt="Garlic Bread"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Garlic Bread</h4>
+                      <p class="description">
+                        Toasted bread with garlic butter
+                      </p>
+                      <p class="price">₱15</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=400&h=300&fit=crop"
+                      alt="Extra Egg"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Egg</h4>
+                      <p class="description">
+                        Add an extra fried egg to any dish
+                      </p>
+                      <p class="price">₱15</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/Gravy.jpg"
+                      alt="Gravy"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Gravy</h4>
+                      <p class="description">Rich brown gravy sauce</p>
+                      <p class="price">₱25</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=400&h=300&fit=crop"
+                      alt="Garlic Mayo"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Garlic Mayo</h4>
+                      <p class="description">
+                        Creamy garlic mayonnaise dipping sauce
+                      </p>
+                      <p class="price">₱25</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400&h=300&fit=crop"
+                      alt="Cheese"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cheese</h4>
+                      <p class="description">Add melted cheese to any dish</p>
+                      <p class="price">₱25</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="../images/Chao-Fan-Wide.jpg"
+                      alt="Cheese"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chao Pan</h4>
+                      <p class="description">
+                        Chinese-style fried rice with vegetables and egg
+                      </p>
+                      <p class="price">₱45</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end tab-container -->
+        </div>
+        <!-- end container -->
+      </section>
+
+      <!-- BACK LINK -->
+      <div
+        class="container"
+        style="text-align: center; max-width: 1060px; margin: 0 auto"
+      >
+        <a href="../index.html" class="back-link">← Back to Main Page</a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="container">
+          <p>&copy; 2025 Bluewaves Fine Dining. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <script>
+      function openTab(event, tabId) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((tc) => tc.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((tb) => tb.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("siteHeader")
+          .classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      const btt = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        btt.classList.toggle("visible", window.scrollY > 450);
+      });
+      btt.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

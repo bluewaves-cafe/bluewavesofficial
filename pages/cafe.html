@@ -1,0 +1,1950 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluewaves - Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="../images/bluewaves.jpg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+   RESET
+   ============================================================ */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ============================================================
+   ROOT TOKENS
+   ============================================================ */
+      :root {
+        --navy: #0b1929;
+        --deep-blue: #0d2137;
+        --ocean: #1a3c5e;
+        --wave: #2e6fa0;
+        --sky: #5ba3d6;
+        --foam: #a8d8ea;
+        --sand: #f5efe6;
+        --cream: #faf8f4;
+        --accent: #e8a87c;
+        --accent2: #d47a4a;
+        --text-dark: #0b1929;
+        --text-mid: #3a5a7c;
+        --text-light: #6e8da8;
+        --white: #ffffff;
+        --shadow-sm: 0 2px 12px rgba(11, 25, 41, 0.08);
+        --shadow-md: 0 6px 28px rgba(11, 25, 41, 0.12);
+        --shadow-lg: 0 12px 48px rgba(11, 25, 41, 0.18);
+        --radius: 16px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--cream);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ============================================================
+   HEADER
+   ============================================================ */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        padding: 20px 48px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(11, 25, 41, 0.72);
+        backdrop-filter: blur(20px) saturate(1.3);
+        -webkit-backdrop-filter: blur(20px) saturate(1.3);
+        border-bottom: 1px solid rgba(91, 163, 214, 0.12);
+        transition:
+          padding 0.35s,
+          background 0.35s;
+      }
+      header.scrolled {
+        padding: 12px 48px;
+        background: rgba(11, 25, 41, 0.88);
+      }
+
+      header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      header p {
+        font-size: 0.72rem;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0;
+        font-weight: 400;
+      }
+
+      /* ============================================================
+   HERO
+   ============================================================ */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          160deg,
+          var(--navy) 0%,
+          var(--deep-blue) 35%,
+          var(--ocean) 70%,
+          #1e4f74 100%
+        ) !important;
+        padding: 0 !important;
+        text-align: center !important;
+        overflow: hidden;
+      }
+
+      /* grain */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* soft glowing circles */
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle 180px at 15% 60%,
+            rgba(46, 111, 160, 0.18) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 120px at 75% 30%,
+            rgba(91, 163, 214, 0.12) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 90px at 60% 75%,
+            rgba(46, 111, 160, 0.15) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle 200px at 85% 70%,
+            rgba(30, 79, 116, 0.2) 0%,
+            transparent 70%
+          );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* wave SVGs sitting at the bottom */
+      .wave-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+        z-index: 2;
+      }
+      .wave-bottom svg {
+        display: block;
+        width: 100%;
+      }
+
+      /* hero inner container */
+      .hero .container {
+        position: relative;
+        z-index: 3;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* badge above title */
+      .hero .container::before {
+        content: "☕  Welcome to Bluewaves";
+        display: inline-block;
+        margin-bottom: 22px;
+        padding: 7px 22px;
+        border-radius: 30px;
+        border: 1px solid rgba(168, 216, 234, 0.25);
+        background: rgba(168, 216, 234, 0.08);
+        color: var(--foam);
+        font-size: 0.78rem;
+        letter-spacing: 2.2px;
+        text-transform: uppercase;
+      }
+
+      /* the big title – kill ALL the inline styles */
+      .hero .container h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 7vw, 5.4rem) !important;
+        font-weight: 400 !important;
+        color: var(--white) !important;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: none !important;
+        opacity: 1 !important;
+      }
+
+      /* subtitle */
+      .hero .container::after {
+        content: "Where great coffee meets calm waters";
+        display: block;
+        margin-top: 22px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 1.05rem;
+        font-weight: 300;
+      }
+
+      /* ============================================================
+   ABOUT CAFE
+   ============================================================ */
+      .about-cafe {
+        padding: 110px 48px;
+        background: var(--cream);
+      }
+      .about-cafe .container {
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .about-cafe h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        font-weight: 400;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      .about-cafe h2::after {
+        content: "";
+        display: block;
+        width: 52px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--wave), var(--sky));
+        border-radius: 2px;
+        margin: 14px auto 0;
+      }
+      .about-cafe p {
+        color: var(--text-mid);
+        font-size: 0.96rem;
+        line-height: 1.9;
+        margin-bottom: 16px;
+        font-weight: 300;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* info pills */
+      .info-pills {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 34px;
+      }
+      .pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--white);
+        border: 1px solid rgba(46, 111, 160, 0.1);
+        border-radius: 40px;
+        padding: 10px 22px;
+        box-shadow: var(--shadow-sm);
+        font-size: 0.84rem;
+        color: var(--text-mid);
+        font-weight: 500;
+      }
+      .pill-icon {
+        font-size: 1.1rem;
+      }
+
+      /* ============================================================
+   MENU SECTION
+   ============================================================ */
+      .menu-section {
+        padding: 110px 48px;
+        background: linear-gradient(180deg, #eef3f8 0%, #e4ecf3 100%);
+      }
+      .menu-section .container {
+        max-width: 1060px;
+        margin: 0 auto;
+      }
+      .menu-section .container > h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        font-weight: 400;
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .menu-section .container > h2::after {
+        content: "";
+        display: block;
+        width: 52px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--wave), var(--sky));
+        border-radius: 2px;
+        margin: 14px auto 0;
+      }
+
+      /* ── Tab Nav ── */
+      .tab-nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 38px 0 42px;
+      }
+      .tab-button {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(46, 111, 160, 0.15);
+        color: var(--text-mid);
+        padding: 10px 24px;
+        border-radius: 30px;
+        font-size: 0.84rem;
+        font-weight: 500;
+        letter-spacing: 0.6px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+      .tab-button:hover {
+        background: rgba(46, 111, 160, 0.07);
+        color: var(--wave);
+      }
+      .tab-button.active {
+        background: linear-gradient(135deg, var(--wave), var(--sky));
+        color: var(--white);
+        border-color: transparent;
+        box-shadow: 0 4px 18px rgba(46, 111, 160, 0.3);
+      }
+
+      /* ── Tab Content ── */
+      .tab-content {
+        display: none;
+        animation: fadeSlide 0.38s ease;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      @keyframes fadeSlide {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── Menu Category ── */
+      .menu-category {
+        margin-bottom: 44px;
+      }
+      .menu-category h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+        color: var(--ocean);
+        padding-bottom: 12px;
+        border-bottom: 1.5px solid rgba(46, 111, 160, 0.15);
+        margin-bottom: 20px;
+        letter-spacing: 0.4px;
+      }
+
+      /* ── Menu Items Grid ── */
+      .menu-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      .menu-item {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 0;
+        border: 1px solid rgba(46, 111, 160, 0.07);
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .menu-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .menu-item-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+      }
+      .menu-item-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .menu-item h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.12rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+      }
+      .menu-item .description {
+        font-size: 0.84rem;
+        color: var(--text-light);
+        flex: 1;
+        margin-bottom: 14px;
+        font-weight: 300;
+        line-height: 1.55;
+      }
+      .menu-item .price {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--wave);
+        display: flex;
+        align-items: center;
+      }
+      .menu-item .price::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 1px;
+        margin-right: 8px;
+      }
+
+      /* ============================================================
+   BACK LINK
+   ============================================================ */
+      .back-link {
+        display: inline-block;
+        margin: 44px 0 20px;
+        color: var(--wave);
+        font-size: 0.88rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: color 0.3s;
+      }
+      .back-link:hover {
+        color: var(--accent2);
+      }
+
+      /* ============================================================
+   FOOTER
+   ============================================================ */
+      footer {
+        background: var(--navy);
+        padding: 42px 48px;
+        text-align: center;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.82rem;
+        letter-spacing: 0.7px;
+      }
+
+      /* ============================================================
+   BACK TO TOP
+   ============================================================ */
+      a.back-to-top {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--navy);
+        border: 1px solid rgba(91, 163, 214, 0.22);
+        color: var(--white);
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.35s,
+          transform 0.35s,
+          background 0.3s;
+        pointer-events: none;
+        z-index: 500;
+        text-decoration: none;
+      }
+      a.back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      a.back-to-top:hover {
+        background: var(--ocean);
+      }
+
+      /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+      @media (max-width: 720px) {
+        header {
+          padding: 16px 22px;
+        }
+        header.scrolled {
+          padding: 10px 22px;
+        }
+        .hero .container h1 {
+          font-size: 2.4rem !important;
+        }
+        .about-cafe {
+          padding: 70px 22px;
+        }
+        .menu-section {
+          padding: 70px 22px;
+        }
+        .menu-items {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          padding: 34px 22px;
+        }
+      }
+      @media (max-width: 420px) {
+        .tab-button {
+          padding: 8px 16px;
+          font-size: 0.79rem;
+        }
+        .hero .container h1 {
+          font-size: 2rem !important;
+        }
+      }
+
+      /* ============================================================
+   SCROLLBAR
+   ============================================================ */
+      ::-webkit-scrollbar {
+        width: 7px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--sand);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--sky);
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- ─── HEADER ─── -->
+      <header id="siteHeader">
+        <h1>Bluewaves</h1>
+        <p>Cafe</p>
+      </header>
+
+      <!-- ─── HERO ─── -->
+      <section
+        class="hero"
+        style="
+          background-image: url(&quot;../assets/images/cafe.jpg&quot;);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          padding: 100px 0;
+          text-align: center;
+        "
+      >
+        <!-- wave shapes at bottom -->
+        <div class="wave-bottom">
+          <svg
+            viewBox="0 0 1440 100"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="#eef3f8"
+              fill-opacity="0.45"
+              d="M0,60 C240,20 480,80 720,50 C960,20 1200,70 1440,40 L1440,100 L0,100 Z"
+            />
+            <path
+              fill="#eef3f8"
+              d="M0,75 C300,50 600,90 900,65 C1100,48 1300,78 1440,60 L1440,100 L0,100 Z"
+            />
+          </svg>
+        </div>
+        <div class="container">
+          <h1
+            style="
+              color: #e8d0a9;
+              margin: 0;
+              padding: 20px;
+              background-color: #513520;
+              opacity: 80%;
+            "
+          >
+            Welcome to Our Cafe
+          </h1>
+        </div>
+      </section>
+
+      <!-- ─── ABOUT ─── -->
+      <section id="about-cafe" class="about-cafe">
+        <div class="container">
+          <h2>About Our Cafe</h2>
+          <p>
+            Nestled in the heart of the city, our cafe offers a tranquil escape
+            from the hustle and bustle. With comfortable seating, warm lighting,
+            and a welcoming atmosphere, it's the perfect spot to catch up with
+            friends, work remotely, or simply enjoy a moment of solitude with a
+            good book.
+          </p>
+          <p>
+            Our baristas are passionate about coffee and trained to deliver the
+            perfect cup every time. We source our beans from ethical suppliers
+            and roast them in small batches to ensure optimal freshness and
+            flavor.
+          </p>
+          <p>
+            Open daily from 7 AM to 9 PM, we invite you to experience the magic
+            of our cafe space.
+          </p>
+          <div class="info-pills">
+            <div class="pill">
+              <span class="pill-icon">🕖</span> Open 7 AM – 9 PM
+            </div>
+            <div class="pill">
+              <span class="pill-icon">🌿</span> Ethically Sourced
+            </div>
+            <div class="pill">
+              <span class="pill-icon">☕</span> Small Batch Roasts
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── MENU ─── -->
+      <section id="menu" class="menu-section">
+        <div class="container">
+          <h2>Our Menu</h2>
+          <div class="tab-container">
+            <div class="tab-nav">
+              <button
+                class="tab-button active"
+                onclick="openTab(event, 'hot-coffee')"
+              >
+                ☕ Hot Coffee
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'iced-coffee')"
+              >
+                🧊 Iced Coffee
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'specialty')">
+                ✨ Tea
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'frappuccino')"
+              >
+                🥤 Frappuccino
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'non-coffee')">
+                🍹 Non-Coffee Base
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'healthy-drinks')"
+              >
+                🍹 Healthy Drinks
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'italian-soda')"
+              >
+                🍹 Italian Soda
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'addons')">
+                ➕ Add-ons
+              </button>
+            </div>
+
+            <!-- HOT COFFEE TAB -->
+            <div id="hot-coffee" class="tab-content active">
+              <div class="menu-category">
+                <h3>Hot Coffee</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop"
+                      alt="Cafe Americano"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cafe Americano</h4>
+                      <p class="description">
+                        Rich espresso diluted with hot water
+                      </p>
+                      <p class="price">
+                        8oz - ₱119 | 12oz - ₱129 | 16oz - ₱139
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?w=400&h=300&fit=crop"
+                      alt="Cafe Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cafe Latte</h4>
+                      <p class="description">
+                        Smooth espresso with steamed milk
+                      </p>
+                      <p class="price">
+                        8oz - ₱129 | 12oz - ₱139 | 16oz - ₱149
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=300&fit=crop"
+                      alt="Mochaccino"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Mochaccino</h4>
+                      <p class="description">Rich mocha with extra chocolate</p>
+                      <p class="price">
+                        8oz - ₱129 | 12oz - ₱139 | 16oz - ₱149
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop"
+                      alt="Caramel Macchiato"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Caramel Macchiato</h4>
+                      <p class="description">
+                        Vanilla-flavored milk with espresso and caramel drizzle
+                      </p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop"
+                      alt="Cappuccino"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cappuccino</h4>
+                      <p class="description">
+                        Espresso with steamed milk and foam
+                      </p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop"
+                      alt="Cafe Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cafe Mocha</h4>
+                      <p class="description">
+                        Espresso with chocolate and steamed milk
+                      </p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop"
+                      alt="White Chocolate Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>White Chocolate Mocha</h4>
+                      <p class="description">
+                        Espresso with white chocolate and milk
+                      </p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&h=300&fit=crop"
+                      alt="Vanilla Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Vanilla Latte</h4>
+                      <p class="description">Smooth latte with vanilla syrup</p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=300&fit=crop"
+                      alt="Dark Choco"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Dark Choco</h4>
+                      <p class="description">Rich dark chocolate coffee</p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400&h=300&fit=crop"
+                      alt="Flat White"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Flat White</h4>
+                      <p class="description">Velvety microfoam over espresso</p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop"
+                      alt="Salted Caramel"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Salted Caramel</h4>
+                      <p class="description">Sweet and salty caramel coffee</p>
+                      <p class="price">
+                        8oz - ₱149 | 12oz - ₱159 | 16oz - ₱169
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ICED COFFEE TAB -->
+            <div id="iced-coffee" class="tab-content">
+              <div class="menu-category">
+                <h3>Iced Coffee</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=300&fit=crop"
+                      alt="Blue Wave Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Blue Wave Latte (Signature Drink)</h4>
+                      <p class="description">
+                        Our signature blue-hued iced latte
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱159 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=300&fit=crop"
+                      alt="Cafe Americano"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cafe Americano</h4>
+                      <p class="description">
+                        Strong black coffee with cold water
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱119 | Venti (22oz) - ₱129
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400&h=300&fit=crop"
+                      alt="Ice Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Ice Latte</h4>
+                      <p class="description">Chilled espresso with cold milk</p>
+                      <p class="price">
+                        Tall (16oz) - ₱129 | Venti (22oz) - ₱139
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop"
+                      alt="White Chocolate Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>White Chocolate Mocha</h4>
+                      <p class="description">Iced white chocolate coffee</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400&h=300&fit=crop"
+                      alt="Caramel Macchiato"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Caramel Macchiato</h4>
+                      <p class="description">Iced vanilla latte with caramel</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1546173159-315724a31696?w=400&h=300&fit=crop"
+                      alt="Cafe Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cafe Mocha</h4>
+                      <p class="description">Iced chocolate espresso blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1599639957043-f3aa5c986398?w=400&h=300&fit=crop"
+                      alt="Spanish Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Spanish Latte</h4>
+                      <p class="description">
+                        Condensed milk espresso over ice
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1530373239216-42518e6b4063?w=400&h=300&fit=crop"
+                      alt="Salted Caramel"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Salted Caramel</h4>
+                      <p class="description">
+                        Sweet and salty iced caramel coffee
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1499961524705-bfd103e65a6d?w=400&h=300&fit=crop"
+                      alt="Seasalt Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Seasalt Latte</h4>
+                      <p class="description">Smooth latte with sea salt foam</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=300&fit=crop"
+                      alt="Vanilla Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Vanilla Latte</h4>
+                      <p class="description">Classic vanilla iced latte</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=400&h=300&fit=crop"
+                      alt="Hazelnut Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Hazelnut Latte</h4>
+                      <p class="description">Nutty hazelnut iced latte</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=300&fit=crop"
+                      alt="Blu Vanilla Latte"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Blu Vanilla Latte</h4>
+                      <p class="description">Blue vanilla latte</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=300&fit=crop"
+                      alt="Biscoff Latte (Cream Series)"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Biscoff Latte (Cream Series)</h4>
+                      <p class="description">Creamy biscoff cookie latte</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop"
+                      alt="Sea Salt Match"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Sea Salt Matcha</h4>
+                      <p class="description">
+                        Smooth matcha topped with sea salt foam
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱159 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SPECIALTY TAB -->
+            <div id="specialty" class="tab-content">
+              <div class="menu-category">
+                <h3>Specialty Tea</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?w=400&h=300&fit=crop"
+                      alt="Lemon Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Lemon Tea</h4>
+                      <p class="description">Citrusy lemon tea</p>
+                      <p class="price">8oz - ₱119 | 12oz - ₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop"
+                      alt="Green Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Green Tea</h4>
+                      <p class="description">
+                        Smooth green tea with steamed milk
+                      </p>
+                      <p class="price">8oz - ₱119 | 12oz - ₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=300&fit=crop"
+                      alt="Jasmin Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Jasmin Tea</h4>
+                      <p class="description">Fragrant jasmine tea</p>
+                      <p class="price">8oz - ₱119 | 12oz - ₱129</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Karak Chai"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Karak Chai</h4>
+                      <p class="description">Spiced tea blend</p>
+                      <p class="price">8oz - ₱129 | 12oz - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Mint Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Mint Tea</h4>
+                      <p class="description">Refreshing mint tea</p>
+                      <p class="price">8oz - ₱139 | 12oz - ₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Moroccan Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Moroccan Tea</h4>
+                      <p class="description">Traditional Moroccan mint tea</p>
+                      <p class="price">8oz - ₱139 | 12oz - ₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&h=300&fit=crop"
+                      alt="Blu Pea Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Blu Pea Tea</h4>
+                      <p class="description">Butterfly pea flower tea</p>
+                      <p class="price">8oz - ₱139 | 12oz - ₱149</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Earl Gray Tea"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Earl Gray Tea</h4>
+                      <p class="description">Classic Earl Grey blend</p>
+                      <p class="price">8oz - ₱139 | 12oz - ₱149</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FRAPPUCCINO TAB -->
+            <div id="frappuccino" class="tab-content">
+              <div class="menu-category">
+                <h3>Frappuccino</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
+                      alt="Matcha Cloud"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Matcha Cloud</h4>
+                      <p class="description">Creamy matcha frappuccino</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Matcha Oreo"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Matcha Oreo</h4>
+                      <p class="description">
+                        Matcha blended with Oreo cookies
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=300&fit=crop"
+                      alt="Biscoff Cream"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Biscoff Cream</h4>
+                      <p class="description">
+                        Biscoff cookie cream frappuccino
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Pistacio Kunafa"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pistacio Kunafa</h4>
+                      <p class="description">
+                        Middle Eastern inspired pistachio treat
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?w=400&h=300&fit=crop"
+                      alt="Java Chips"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Java Chips</h4>
+                      <p class="description">
+                        Coffee frappuccino with chocolate chips
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop"
+                      alt="White Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>White Mocha</h4>
+                      <p class="description">
+                        White chocolate mocha frappuccino
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=300&fit=crop"
+                      alt="Triple Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Triple Mocha</h4>
+                      <p class="description">
+                        Triple chocolate mocha frappuccino
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400&h=300&fit=crop"
+                      alt="Triple Dark Chocolate"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Triple Dark Chocolate</h4>
+                      <p class="description">Rich dark chocolate frappuccino</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop"
+                      alt="Black Forest"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Black Forest</h4>
+                      <p class="description">Chocolate cherry frappuccino</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1558326567-98ae2405596b?w=400&h=300&fit=crop"
+                      alt="Cookies & Cream"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cookies & Cream</h4>
+                      <p class="description">
+                        Classic cookies and cream frappuccino
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop"
+                      alt="Coffee Jelly"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Coffee Jelly</h4>
+                      <p class="description">
+                        Coffee frappuccino with jelly cubes
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop"
+                      alt="Caramel Cream"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Caramel Cream</h4>
+                      <p class="description">Sweet caramel cream frappuccino</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop"
+                      alt="Strawberries & Cream"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Strawberries & Cream</h4>
+                      <p class="description">
+                        Fresh strawberry cream frappuccino
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop"
+                      alt="Dark Mocha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Dark Mocha</h4>
+                      <p class="description">Rich dark mocha frappuccino</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1599639832488-e06d1eef149c?w=400&h=300&fit=crop"
+                      alt="Caramel Frappucino"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Caramel Frappucino</h4>
+                      <p class="description">Classic caramel frappuccino</p>
+                      <p class="price">
+                        Tall (16oz) - ₱179 | Venti (22oz) - ₱189
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NON-COFFEE TAB -->
+            <div id="non-coffee" class="tab-content">
+              <div class="menu-category">
+                <h3>Non-Coffee Drinks</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=400&h=300&fit=crop"
+                      alt="Milky Berry"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Milky Berry</h4>
+                      <p class="description">Creamy berry blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400&h=300&fit=crop"
+                      alt="Dark Chocolate"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Dark Chocolate</h4>
+                      <p class="description">Rich dark chocolate blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
+                      alt="Seasalt Matcha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Seasalt Matcha</h4>
+                      <p class="description">Matcha with sea salt topping</p>
+                      <p class="price">
+                        Tall (16oz) - ₱159 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop"
+                      alt="Milky Matcha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Milky Matcha</h4>
+                      <p class="description">Creamy matcha blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱159 | Venti (22oz) - ₱169
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop"
+                      alt="Milky Oreo"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Milky Oreo</h4>
+                      <p class="description">Creamy Oreo blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop"
+                      alt="Strawberry Matcha"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Strawberry Matcha</h4>
+                      <p class="description">Sweet strawberry matcha blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1558326567-98ae2405596b?w=400&h=300&fit=crop"
+                      alt="Cookies & Cream"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cookies & Cream</h4>
+                      <p class="description">
+                        Cookies, cream and blueberry blend
+                      </p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop"
+                      alt="Crust Blueberry"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Crust Blueberry</h4>
+                      <p class="description">Blueberry with a crusty twist</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop"
+                      alt="Snow Dream Choco"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Snow Dream Choco</h4>
+                      <p class="description">Dreamy chocolate blend</p>
+                      <p class="price">
+                        Tall (16oz) - ₱149 | Venti (22oz) - ₱159
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HEALTHY DRINKS TAB -->
+            <div id="healthy-drinks" class="tab-content">
+              <div class="menu-category">
+                <h3>Healthy Drinks</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop"
+                      alt="Blue Lemon Yakult"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Blue Lemon Yakult</h4>
+                      <p class="description">
+                        Refreshing blend of blue lemon and yakult
+                      </p>
+                      <p class="price">16oz - ₱129 | 22oz - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop"
+                      alt="Cucumber Lemonade"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cucumber Lemonade</h4>
+                      <p class="description">
+                        Refreshing cucumber lemonade with natural flavors
+                      </p>
+                      <p class="price">16oz - ₱109 | 22oz - ₱119</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"
+                      alt="Honey Lemon Yakult"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Honey Lemon Yakult</h4>
+                      <p class="description">
+                        Refreshing honey lemon yakult with natural flavors
+                      </p>
+                      <p class="price">16oz - ₱109 | 22oz - ₱119</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop"
+                      alt="Cucumber Lemonade / Mint"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cucumber Lemonade / Mint</h4>
+                      <p class="description">
+                        Refreshing cucumber lemonade with mint
+                      </p>
+                      <p class="price">16oz - ₱109 | 22oz - ₱119</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ITALIAN SODA TAB -->
+            <div id="italian-soda" class="tab-content">
+              <div class="menu-category">
+                <h3>Italian Soda</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=400&h=300&fit=crop"
+                      alt="Grape Nectar"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Grape Nectar</h4>
+                      <p class="description">
+                        Refreshing blend of grape and nectar
+                      </p>
+                      <p class="price">Tall - ₱129 | Venti - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop"
+                      alt="Apple Due"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Apple Due</h4>
+                      <p class="description">
+                        Refreshing apple due with natural flavors
+                      </p>
+                      <p class="price">Tall - ₱129 | Venti - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop"
+                      alt="Strawberry Pop"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Strawberry Pop</h4>
+                      <p class="description">
+                        Refreshing strawberry pop with natural flavors
+                      </p>
+                      <p class="price">Tall - ₱129 | Venti - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=400&h=300&fit=crop"
+                      alt="Apple Dew"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Apple Dew</h4>
+                      <p class="description">
+                        Refreshing apple dew with natural flavors
+                      </p>
+                      <p class="price">Tall - ₱129 | Venti - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=400&h=300&fit=crop"
+                      alt="Mango Pop"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Mango Pop</h4>
+                      <p class="description">
+                        Refreshing mango pop with natural flavors
+                      </p>
+                      <p class="price">Tall - ₱129 | Venti - ₱139</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?w=400&h=300&fit=crop"
+                      alt="Lychee"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Lychee</h4>
+                      <p class="description">
+                        Refreshing lychee with natural flavors
+                      </p>
+                      <p class="price">Tall - ₱129 | Venti - ₱139</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ADD-ONS TAB -->
+            <div id="addons" class="tab-content">
+              <div class="menu-category">
+                <h3>Add-ons</h3>
+                <div class="menu-items">
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&h=300&fit=crop"
+                      alt="Espresso Shot"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Espresso Shot</h4>
+                      <p class="description">Extra shot of espresso</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop"
+                      alt="Whipped Cream"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Whipped Cream</h4>
+                      <p class="description">Extra whipped cream topping</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1618897996318-5a901fa6ca71?w=400&h=300&fit=crop"
+                      alt="Cream Cheese"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Cream Cheese</h4>
+                      <p class="description">Cream cheese foam topping</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=300&fit=crop"
+                      alt="Biscoff"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Biscoff</h4>
+                      <p class="description">Biscoff cookie crumbles</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop"
+                      alt="Biscoff Powder"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Biscoff Powder</h4>
+                      <p class="description">Biscoff powder topping</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=400&h=300&fit=crop"
+                      alt="Chocolate Chips"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Chocolate Chips</h4>
+                      <p class="description">Chocolate chip topping</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop"
+                      alt="Oreo"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Oreo</h4>
+                      <p class="description">Oreo cookie crumbles</p>
+                      <p class="price">₱25.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop"
+                      alt="Flavored Syrup"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Flavored Syrup</h4>
+                      <p class="description">Add any flavor syrup</p>
+                      <p class="price">₱20.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop"
+                      alt="Nata"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Nata</h4>
+                      <p class="description">Nata de coco jelly</p>
+                      <p class="price">₱20.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1525385133512-2f3bdd039054?w=400&h=300&fit=crop"
+                      alt="Pearl"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Pearl</h4>
+                      <p class="description">Tapioca pearls (boba)</p>
+                      <p class="price">₱20.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?w=400&h=300&fit=crop"
+                      alt="Popping Boba"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Popping Boba</h4>
+                      <p class="description">Fruit-flavored popping boba</p>
+                      <p class="price">₱20.00</p>
+                    </div>
+                  </div>
+                  <div class="menu-item">
+                    <img
+                      src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop"
+                      alt="Yakult"
+                      class="menu-item-image"
+                    />
+                    <div class="menu-item-content">
+                      <h4>Yakult</h4>
+                      <p class="description">Add yakult to any drink</p>
+                      <p class="price">₱20.00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── BACK LINK ─── -->
+      <div class="container" style="text-align: center">
+        <a href="../index.html" class="back-link">← Back to Main Page</a>
+      </div>
+
+      <!-- ─── FOOTER ─── -->
+      <footer>
+        <div class="container">
+          <p>&copy; 2025 Bluewaves Cafe. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ─── BACK TO TOP ─── -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- ─── JAVASCRIPT ─── -->
+    <script>
+      // Tab switching
+      function openTab(event, tabId) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((tc) => tc.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((tb) => tb.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+
+      // Header shrink on scroll
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("siteHeader")
+          .classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      // Back to top button
+      const btt = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        btt.classList.toggle("visible", window.scrollY > 450);
+      });
+      btt.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

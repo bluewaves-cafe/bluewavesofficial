@@ -1,0 +1,49 @@
+/* Blue Waves Cafe - Video Section Styles */
+
+.video-section {
+    padding: 4rem 0;
+}
+
+.video-section .section-title {
+    color: var(--foam-white);
+    margin-top: 0;
+}
+
+.video-section .section-title::after {
+    background: var(--tropical-teal);
+}
+
+.video-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--sky-blue);
+    border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .video-container {
+        padding: 1rem;
+    }
+}

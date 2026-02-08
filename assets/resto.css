@@ -1,0 +1,92 @@
+/* Blue Waves Cafe - Restaurant/Cafe Section Styles */
+
+.our-resto {
+    padding: 4rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, var(--foam-white) 50%, #ffffff 100%);
+}
+
+.resto-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.resto-description {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.resto-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 105, 148, 0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--ocean-blue);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 206, 209, 0.2);
+    border-top-color: var(--tropical-teal);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.feature-card h3 {
+    color: var(--ocean-deep);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Special highlights */
+.highlight-box {
+    background: linear-gradient(135deg, var(--sky-blue) 0%, var(--tropical-teal) 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 206, 209, 0.3);
+}
+
+.highlight-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.highlight-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Ocean wave divider */
+.wave-divider {
+    height: 50px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%2387CEEB"></path></svg>') no-repeat center;
+    background-size: cover;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .resto-features {
+        grid-template-columns: 1fr;
+    }
+}
